@@ -4,16 +4,12 @@ title: "ABC Bank Ltd."
 execute:
    code-fold: true
    echo: false
+subtitle: "Cognext model"
+author: "amol"
+date: "22-08-2022"
 format:
-   docx:
+  pdf:
     toc: true
-    toc-depth: 3
-    toc-location: right
-    number-sections: true
-    number-depth: 3
-    standalone: true
-    toc-title: Contents
-    # highlight-style: github
 ---
 
 ## EXECUTIVE SUMMARY
