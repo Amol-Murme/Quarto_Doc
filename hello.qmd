@@ -1,0 +1,30 @@
+---
+title: "ABC Bank Ltd."
+subtitle: "Cognext model"
+author: "amol"
+date: "22-08-2022"
+abstract: "You can produce a wide variety of output types from executable code blocks, including plots, tabular output from data frames, and plain text output (e.g. printing the results of statistical summaries)."
+format:
+  docx:
+    reference-doc: custom-reference-doc.docx
+    toc: true
+    number-sections: true
+    highlight-style: github
+jupyter: python3
+---
+
+![Image](images.jpeg)
+
+Version {{< var version >}} is a minor upgrade.
+
+Please contact us at {{< var email.info >}}.
+
+Quarto includes {{< var engine.jupyter >}} and 
+{{< var engine.knitr >}} computation engines.
+
+```{python}
+#| tags: [parameters]
+
+alpha = 0.1
+ratio = 0.1
+```
