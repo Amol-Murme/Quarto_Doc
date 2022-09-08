@@ -1,5 +1,7 @@
 ---
 title: "ABC Bank Ltd."
+execute:
+   code-fold: true
 subtitle: "Cognext model"
 author: "amol"
 date: "22-08-2022"
@@ -9,8 +11,6 @@ format:
     toc: true
     number-sections: true
     highlight-style: github
-execute:
-   code-fold: true
 jupyter: python3
 ---
 
@@ -35,7 +35,7 @@ jupyter: python3
 ## EDA
   Following is a summary of input data. Refer Annexure-1 for detailed EDA.
   
-  ![Image](images.jpeg)
+  ![Image](Images/images.jpeg)
 
 ## Methodology Overview
   {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
@@ -49,20 +49,21 @@ Quarto includes {{< var engine.jupyter >}} and
 
 ```{python}
 #| tags: [parameters]
-#| echo: fenced
+
 alpha = 0.1
 ratio = 0.1
 import pandas as pd
 
-df = pd.read_csv('test.csv')
+df = pd.read_csv('Data source/test.csv')
 print(df.to_string(index= False))
-#| echo: fenced
+
 from IPython.display import Markdown
 from tabulate import tabulate
 table = df.values.tolist()
 Markdown(tabulate(
   table, 
-  headers=df.columns
+  headers=df.columns,
+  tablefmt="grid_tables",
 ))
 
 ```
