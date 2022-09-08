@@ -4,7 +4,7 @@ execute:
    code-fold: true
    echo: false
 subtitle: "Cognext model"
-author: "amol"
+author: "XYZ"
 date: "22-08-2022"
 abstract: "You can produce a wide variety of output types from executable code blocks, including plots, tabular output from data frames, and plain text output (e.g. printing the results of statistical summaries)."
 format:
@@ -16,7 +16,7 @@ jupyter: python3
 ---
 
 ## EXECUTIVE SUMMARY
-  This document covers the model development process for **XGBoost_2_AutoML_20210218_195405** model. The model is a classification model that uses xgboost with input data consisting of 20000 observations and 70 features. The model achieves Auto of **75.84%** on validation dataset and **74.98%** on Out-of-Sample (OOS) test dataset.
+  This document covers the model development process for **{{< var Algorithm.Model >}}** model. The model is a classification model that uses **{{< var Algorithm.Name >}}** with input data consisting of **{{< var.Algorithm.No_of_Observation >}}** observations and **{{< var Algorithm.Features >}}** features. The model achieves Auto of **{{< var Validation.Auto >}}** on validation dataset and **{{< var OOS_test.Auto >}}** on Out-of-Sample (OOS) test dataset.
 
 ## MODEL PERFORMANCE SUMMARY
   | Dataset     |   Size                      |      Auto                   |
@@ -36,10 +36,10 @@ jupyter: python3
 ## EDA
   Following is a summary of input data. Refer Annexure-1 for detailed EDA.
   
-  ![Image](Images/images.jpeg)
 
 ## Methodology Overview
-  {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
+  {{< var Algorithm.Name >}} is a fast and efficient implementation of gradient boosting algorithm. Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.
+
 
 ```{python}
 #| tags: [parameters]
@@ -61,66 +61,61 @@ Markdown(tabulate(
 ))
 ```
  Following is a summary of steps performed to train the model:
- ![Model Development Pipeline](Images/images.jpeg)
+ ![Model Development Pipeline](Images/MDP.png)
 
 ### Data Preparation
-  {{< var Data_Preparation >}}
+  The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e. finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.
 
 ### Feature Transformation
-  {{< var Feature_Transformation >}}
+  Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.
 
 ### Model Tuning
-  {{< var Model_Tunning >}}
+  Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).
 
 ### Model Performance Evaluation
-  {{< var Model_Perfor_Eval >}}
+  Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.
 
 ### Model Stability
-  {{< var Model_Stability >}}
+  Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.
 
 ## Model Details
-  {{< var Model_Details.details >}}
+  Detailed Information regarding model.
 
 ### Model Hyperparameters
   Following is a summary of key model hyperparameters:
-  ```{python}
-#| tags: [parameters]
+```{python}
+  import pandas as pd
+  df1 = pd.read_csv('Data source/test.csv')
 
-alpha = 0.1
-ratio = 0.1
-import pandas as pd
-
-df = pd.read_csv('Data source/test.csv')
-#print(df.to_string(index= False))
-
-from IPython.display import Markdown
-from tabulate import tabulate
-table = df.values.tolist()
-Markdown(tabulate(
-  table, 
-  headers=df.columns,
-  tablefmt= "grid"
-))
+  from IPython.display import Markdown
+  from tabulate import tabulate
+  table = df1.values.tolist()
+  Markdown(tabulate(
+    table, 
+    headers=df1.columns,
+    tablefmt= "grid"
+  ))
 ```
 
 ### Important Features
   Following is a list of important features for the model:
+    
   | Dataset     |   Size                      |      Auto                   |
-  |-------------|-----|------|
+  |-------------|-----------------------------|-----------------------------|
   | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
   | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
 
-  ![Partial Dependance Graph](Images/pdg.png)
+  ![Partial Dependance Graph](Images/PDP.png)
 
 ### Model Performance
   Following are the model performance statistics on validation and OOS test dataset:
   **Validation dataset**
 
-  ![Model Performance on Validation dataset](Images/roc.png)
+  ![Model Performance on Validation dataset](Images/Performance_test_val.png)
 
   **Test dataset**
 
-  ![Model Performance on Test dataset](Images/roc.png)
+  ![Model Performance on Test dataset](Images/performance_test.png)
 
 ### Model Stability
   Following are model stability statistics:

@@ -16,7 +16,9 @@ Train:
 
 Algorithm:
   Name: XGBoost
-  Overview: "XGBoost is a fast and efficient implementation of gradient boosting algorithm. Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees."
+  Model: XGBoost_2_AutoML_20210218_195405
+  No_of_Observation: 20000
+  Features: 70
 
 Model_Details:
   details: "Detailed Information regarding model."
