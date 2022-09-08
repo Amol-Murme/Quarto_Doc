@@ -6,14 +6,39 @@ date: "22-08-2022"
 abstract: "You can produce a wide variety of output types from executable code blocks, including plots, tabular output from data frames, and plain text output (e.g. printing the results of statistical summaries)."
 format:
   docx:
-    reference-doc: custom-reference-doc.docx
     toc: true
     number-sections: true
     highlight-style: github
+execute:
+   code-fold: true
 jupyter: python3
 ---
 
-![Image](images.jpeg)
+## EXECUTIVE SUMMARY
+  This document covers the model development process for **XGBoost_2_AutoML_20210218_195405** model. The model is a classification model that uses xgboost with input data consisting of 20000 observations and 70 features. The model achieves Auto of **75.84%** on validation dataset and **74.98%** on Out-of-Sample (OOS) test dataset.
+
+## MODEL PERFORMANCE SUMMARY
+  | Dataset     |   Size                      |      Auto                   |
+  |-------------|-----|------|
+  | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
+  | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
+
+## DATASET
+  Following dataset were used for model training, tuning and OOS performance estimation:
+
+  | Dataset   |   Size       |   Features  | Purpose    |
+  |-----------|--------------|-------------|------------|
+  | Train     | {{< var Train.Size >}} | {{< var Train.Features >}} |{{< var Train.Purpose >}} |
+  |Validation |{{< var Validation.Size >}}|{{< var Validation.Features >}}|{{< var Validation.Purpose >}}|
+  | OSS Test  |{{< var OOS_test.Size >}}   | {{< var OOS_test.Features >}}|{{< var OOS_test.Purpose >}}|
+
+## EDA
+  Following is a summary of input data. Refer Annexure-1 for detailed EDA.
+  
+  ![Image](images.jpeg)
+
+## Methodology Overview
+  {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
 
 Version {{< var version >}} is a minor upgrade.
 
@@ -24,7 +49,20 @@ Quarto includes {{< var engine.jupyter >}} and
 
 ```{python}
 #| tags: [parameters]
-
+#| echo: fenced
 alpha = 0.1
 ratio = 0.1
+import pandas as pd
+
+df = pd.read_csv('test.csv')
+print(df.to_string(index= False))
+#| echo: fenced
+from IPython.display import Markdown
+from tabulate import tabulate
+table = df.values.tolist()
+Markdown(tabulate(
+  table, 
+  headers=df.columns
+))
+
 ```

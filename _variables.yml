@@ -7,3 +7,23 @@ email:
 engine:
   jupyter: "[Jupyter](https://jupyter.org)"
   knitr: "[Knitr](<https://yihui.name/knitr>)"
+
+Validation:
+  Size: 1920
+  Auto: 75.84%
+  Features: 70
+  Purpose: Hyperparameter tuning
+
+OOS_test:
+  Size: 1990
+  Auto: 74.98%
+  Features: 70
+  Purpose: OOS performance estimation
+Train:
+  Size: 1690
+  Features: 70
+  Purpose: Model training
+
+Algorithm:
+  Name: XGBoost
+  Overview: "XGBoost is a fast and efficient implementation of gradient boosting algorithm. Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees."
