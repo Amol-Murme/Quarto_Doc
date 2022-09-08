@@ -2,6 +2,7 @@
 title: "ABC Bank Ltd."
 execute:
    code-fold: true
+   echo: false
 subtitle: "Cognext model"
 author: "amol"
 date: "22-08-2022"
@@ -40,13 +41,6 @@ jupyter: python3
 ## Methodology Overview
   {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
 
-Version {{< var version >}} is a minor upgrade.
-
-Please contact us at {{< var email.info >}}.
-
-Quarto includes {{< var engine.jupyter >}} and 
-{{< var engine.knitr >}} computation engines.
-
 ```{python}
 #| tags: [parameters]
 
@@ -55,7 +49,7 @@ ratio = 0.1
 import pandas as pd
 
 df = pd.read_csv('Data source/test.csv')
-print(df.to_string(index= False))
+#print(df.to_string(index= False))
 
 from IPython.display import Markdown
 from tabulate import tabulate
@@ -63,7 +57,78 @@ table = df.values.tolist()
 Markdown(tabulate(
   table, 
   headers=df.columns,
-  tablefmt="grid_tables",
+  tablefmt= "grid"
 ))
-
 ```
+ Following is a summary of steps performed to train the model:
+ ![Model Development Pipeline](Images/images.jpeg)
+
+### Data Preparation
+  {{< var Data_Preparation >}}
+
+### Feature Transformation
+  {{< var Feature_Transformation >}}
+
+### Model Tuning
+  {{< var Model_Tunning >}}
+
+### Model Performance Evaluation
+  {{< var Model_Perfor_Eval >}}
+
+### Model Stability
+  {{< var Model_Stability >}}
+
+## Model Details
+  {{< var Model_Details.details >}}
+
+### Model Hyperparameters
+  Following is a summary of key model hyperparameters:
+  ```{python}
+#| tags: [parameters]
+
+alpha = 0.1
+ratio = 0.1
+import pandas as pd
+
+df = pd.read_csv('Data source/test.csv')
+#print(df.to_string(index= False))
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = df.values.tolist()
+Markdown(tabulate(
+  table, 
+  headers=df.columns,
+  tablefmt= "grid"
+))
+```
+
+### Important Features
+  Following is a list of important features for the model:
+  | Dataset     |   Size                      |      Auto                   |
+  |-------------|-----|------|
+  | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
+  | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
+
+  ![Partial Dependance Graph](Images/pdg.png)
+
+### Model Performance
+  Following are the model performance statistics on validation and OOS test dataset:
+  **Validation dataset**
+
+  ![Model Performance on Validation dataset](Images/roc.png)
+
+  **Test dataset**
+
+  ![Model Performance on Test dataset](Images/roc.png)
+
+### Model Stability
+  Following are model stability statistics:
+  **Train vs. Validation dataset**
+  ![Model Stability (Val vs. Train dataset)](Images/roc.png)
+
+  **Validation vs. Test dataset**
+  ![Model Stability (Val vs. Test dataset)](Images/roc.png)
+
+### Model Performance by Number of Features
+  Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.
