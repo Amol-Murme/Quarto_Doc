@@ -45,6 +45,16 @@ format:
 Methodology Overview Table:
 
 
+| Dataset    |   Size | Auto   |
+|:----------:|:------:|:------:|
+| Validation |   1920 | 75.84% |
+| OSS Test   |   1990 | 74.98% |
+
+: {tbl-colwidths="[34,33,33]"}
+
+
+
+
  Following is a summary of steps performed to train the model:
  ![Model Development Pipeline](Images/images.jpeg)
 
