@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ABC Bank Ltd.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="auto_hello_files/libs/clipboard/clipboard.min.js"></script>
+<script src="auto_hello_files/libs/quarto-html/quarto.js"></script>
+<script src="auto_hello_files/libs/quarto-html/popper.min.js"></script>
+<script src="auto_hello_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="auto_hello_files/libs/quarto-html/anchor.min.js"></script>
+<link href="auto_hello_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="auto_hello_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="auto_hello_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="auto_hello_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="auto_hello_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ABC Bank Ltd.</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">EXECUTIVE SUMMARY</h2>
+<p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses xgboost with input data consisting of 20000 observations and 70 features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
+</section>
+<section id="model-performance-summary" class="level2">
+<h2 class="anchored" data-anchor-id="model-performance-summary">MODEL PERFORMANCE SUMMARY</h2>
+<table class="table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 20%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Size</th>
+<th>Auto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validation</td>
+<td><p>1920</p></td>
+<td><p>75.84%</p></td>
+</tr>
+<tr class="even">
+<td>OSS Test</td>
+<td><p>1990</p></td>
+<td><p>74.98%</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="var-train.size" class="level2">
+<h2 class="anchored" data-anchor-id="var-train.size">1690</h2>
+<p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 28%">
+<col style="width: 26%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Size</th>
+<th>Features</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Train</td>
+<td><p>1690</p></td>
+<td><p>70</p></td>
+<td><p>Model training</p></td>
+</tr>
+<tr class="even">
+<td>Validation</td>
+<td><p>1920</p></td>
+<td><p>70</p></td>
+<td><p>Hyperparameter tuning</p></td>
+</tr>
+<tr class="odd">
+<td>OSS Test</td>
+<td><p>1990</p></td>
+<td><p>70</p></td>
+<td><p>OOS performance estimation</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="eda" class="level2">
+<h2 class="anchored" data-anchor-id="eda">EDA</h2>
+<p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/images.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Image</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="methodology-overview" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-overview">Methodology Overview</h2>
+<p>XGBoost XGBoost is a fast and efficient implementation of gradient boosting algorithm. Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees.</p>
+<p>Methodology Overview Table:</p>
+<table class="table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Dataset</th>
+<th style="text-align: center;">Size</th>
+<th style="text-align: center;">Auto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Validation</td>
+<td style="text-align: center;">1920</td>
+<td style="text-align: center;">75.84%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">OSS Test</td>
+<td style="text-align: center;">1990</td>
+<td style="text-align: center;">74.98%</td>
+</tr>
+</tbody>
+</table>
+<p>Following is a summary of steps performed to train the model: <img src="Images/images.jpeg" class="img-fluid" alt="Model Development Pipeline"></p>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">Data Preparation</h3>
+<p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
+</section>
+<section id="feature-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="feature-transformation">Feature Transformation</h3>
+<p>Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</p>
+</section>
+<section id="model-tuning" class="level3">
+<h3 class="anchored" data-anchor-id="model-tuning">Model Tuning</h3>
+<p>Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</p>
+</section>
+<section id="model-performance-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance-evaluation">Model Performance Evaluation</h3>
+<p>Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</p>
+</section>
+<section id="model-stability" class="level3">
+<h3 class="anchored" data-anchor-id="model-stability">Model Stability</h3>
+<p>Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</p>
+</section>
+</section>
+<section id="model-details" class="level2">
+<h2 class="anchored" data-anchor-id="model-details">Model Details</h2>
+<p>Detailed Information regarding model.</p>
+<section id="model-hyperparameters" class="level3">
+<h3 class="anchored" data-anchor-id="model-hyperparameters">Model Hyperparameters</h3>
+<p>Following is a summary of key model hyperparameters:</p>
+<div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Size</th>
+<th>Auto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validation</td>
+<td>1920</td>
+<td>75.84%</td>
+</tr>
+<tr class="even">
+<td>OSS Test</td>
+<td>1990</td>
+<td>74.98%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>‘+——–+————+——-+| Name | LastName | Age |+========+============+=======+| Name | LastName | Age |+——–+————+——-+| Juan | Lopez | 22 |+——–+————+——-+| Luisa | Perez | 24 |+——–+————+——-+| Ana | Sanchez | 23 |+——–+————+——-+’ ### Important Features Following is a list of important features for the model: | Dataset | Size | Auto | |————-|—–|——| | Validation | 1920 | 75.84% | | OSS Test | 1990 | 74.98% |</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/pdg.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Partial Dependance Graph</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="model-performance" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance">Model Performance</h3>
+<p>Following are the model performance statistics on validation and OOS test dataset: <strong>Validation dataset</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/roc.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Model Performance on Validation dataset</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Test dataset</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/roc.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Model Performance on Test dataset</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="model-stability-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-stability-1">Model Stability</h3>
+<p>Following are model stability statistics: <strong>Train vs.&nbsp;Validation dataset</strong> <img src="Images/roc.png" class="img-fluid" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
+<p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="Images/roc.png" class="img-fluid" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
+</section>
+<section id="model-performance-by-number-of-features" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance-by-number-of-features">Model Performance by Number of Features</h3>
+<p>Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
