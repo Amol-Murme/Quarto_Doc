@@ -12,7 +12,7 @@ format:
     number-sections: true
     number-depth: 3
     standalone: true
-    toc-title: Contents
+    toc-title: Contents  
 jupyter: python3
 ---
 
@@ -126,6 +126,7 @@ Markdown(tabulate(
 #   tablefmt= "grid"
 # ))
 ```
+
 
 ### {{< var Headings.h6_2 >}}
   Following is a list of important features for the model:
