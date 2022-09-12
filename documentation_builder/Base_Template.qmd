@@ -1,84 +1,29 @@
 ---
-jupyter: python3
-title: "ABC Bank Ltd."
+title: "ABC Bank ltd."
 execute:
    code-fold: true
    echo: false
-toc: true
-toc-depth: 3
-toc-location: right
-number-sections: true
-number-depth: 3
-standalone: true
-toc-title: Contents
 format:
-  html:
-    output-file: "output/html/ABC Bank Ltd.html"
   docx:
-    output-file: "output/docx/ABC Bank Ltd.docx"  
-
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: true
+    number-depth: 3
+    standalone: true
+    toc-title: Contents
+jupyter: python3
 ---
 
-## EXECUTIVE SUMMARY
-  This document covers the model development process for **XGBoost_2_AutoML_20210218_195405** model. The model is a classification model that uses xgboost with input data consisting of 20000 observations and 70 features. The model achieves Auto of **75.84%** on validation dataset and **74.98%** on Out-of-Sample (OOS) test dataset.
+## {{< var Headings.h1 >}}
+  This document covers the model development process for **{{< var Algorithm.Model >}}** model. The model is a classification model that uses **{{< var Algorithm.Name >}}** with input data consisting of **{{< var Algorithm.No_of_Observation >}}** observations and **{{< var Algorithm.Features >}}** features. The model achieves Auto of **{{< var Validation.Auto >}}** on validation dataset and **{{< var OOS_test.Auto >}}** on Out-of-Sample (OOS) test dataset.
+{{< pagebreak >}}
+## {{< var Headings.h2 >}}
 
-## MODEL PERFORMANCE SUMMARY
-  | Dataset     |   Size                      |      Auto                   |
-  |-------------|-----|------|
-  | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
-  | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
-
-## {{< var dataset >}}
-  Following dataset were used for model training, tuning and OOS performance estimation:
-
-  | Dataset   |   Size       |   Features  | Purpose    |
-  |-----------|--------------|-------------|------------|
-  | Train     | {{< var Train.Size >}} | {{< var Train.Features >}} |{{< var Train.Purpose >}} |
-  |Validation |{{< var Validation.Size >}}|{{< var Validation.Features >}}|{{< var Validation.Purpose >}}|
-  | OSS Test  |{{< var OOS_test.Size >}}   | {{< var OOS_test.Features >}}|{{< var OOS_test.Purpose >}}|
-
-## EDA
-  Following is a summary of input data. Refer Annexure-1 for detailed EDA.
-  
-  ![Image](../input/images.jpeg)
-
-## Methodology Overview
-  {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
-
-Methodology Overview Table:
-
-
- Following is a summary of steps performed to train the model:
- ![Model Development Pipeline](../input/images.jpeg)
-
-### Data Preparation
-  {{< var Data_Preparation >}}
-
-### Feature Transformation
-  {{< var Feature_Transformation >}}
-
-### Model Tuning
-  {{< var Model_Tunning >}}
-
-### Model Performance Evaluation
-  {{< var Model_Perfor_Eval >}}
-
-### Model Stability
-  {{< var Model_Stability >}}
-
-## Model Details
-  {{< var Model_Details.details >}}
-
-### Model Hyperparameters
-  Following is a summary of key model hyperparameters:
 ```{python}
-#| tags: [parameters]
-
-alpha = 0.1
-ratio = 0.1
 import pandas as pd
-
-df = pd.read_csv('../input/test.csv')
+df = pd.read_csv('../input/MODEL_PERFORMANCE_SUMMARY.csv') 
 #print(df.to_string(index= False))
 
 from IPython.display import Markdown
@@ -87,7 +32,92 @@ table = df.values.tolist()
 Markdown(tabulate(
   table, 
   headers=df.columns,
-  tablefmt= "grid"
+  tablefmt= "grid_table"
+))
+```
+{{< pagebreak >}}
+
+## {{< var Headings.h3 >}}
+  Following dataset were used for model training, tuning and OOS performance estimation:
+
+```{python}
+import pandas as pd
+df = pd.read_csv('../input/DATASET.csv')
+#print(df.to_string(index= False))
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = df.values.tolist()
+Markdown(tabulate(
+  table, 
+  headers=df.columns,
+  tablefmt= "grid_table"
+))
+```
+{{< pagebreak >}}
+
+## {{< var Headings.h4 >}}
+  Following is a summary of input data. Refer Annexure-1 for detailed EDA.
+```{python}
+import pandas as pd
+df = pd.read_csv('../input/EDA.csv')
+#print(df.to_string(index= False))
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = df.values.tolist()
+Markdown(tabulate(
+  table, 
+  headers=df.columns,
+  tablefmt= "grid_table"
+))
+```
+{{< pagebreak >}}
+
+## {{< var Headings.h5 >}}
+  {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
+
+Following is a summary of steps performed to train the model:
+ ![Model Development Pipeline](../input/Model_development_pipeline.png)
+
+### {{< var Headings.h5_1 >}}
+  {{< var Data_Preparation >}}
+
+### {{< var Headings.h5_2 >}}
+  {{< var Feature_Transformation >}}
+
+### {{< var Headings.h5_3 >}}
+  {{< var Model_Tunning >}}
+
+### {{< var Headings.h5_4 >}}
+  {{< var Model_Perfor_Eval >}}
+
+### {{< var Headings.h5_5 >}}
+  {{< var Model_Stability >}}
+{{< pagebreak >}}
+
+## {{< var Headings.h6 >}}
+  {{< var Model_Details.details >}}
+
+### {{< var Headings.h6_1 >}}
+  Following is a summary of key model hyperparameters:
+```{python}
+#| tags: [parameters]
+
+alpha = 0.1
+ratio = 0.1
+import pandas as pd
+
+df = pd.read_csv('../input/Model_Hyperparameters.csv')
+#print(df.to_string(index= False))
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = df.values.tolist()
+Markdown(tabulate(
+  table, 
+  headers=df.columns,
+  tablefmt= "grid_table"
 ))
 
 # print(tabulate(
@@ -97,33 +127,37 @@ Markdown(tabulate(
 # ))
 ```
 
-'+--------+------------+-------+\n| Name   | LastName   | Age   |\n+========+============+=======+\n| Name   | LastName   | Age   |\n+--------+------------+-------+\n| Juan   | Lopez      | 22    |\n+--------+------------+-------+\n| Luisa  | Perez      | 24    |\n+--------+------------+-------+\n| Ana    | Sanchez    | 23    |\n+--------+------------+-------+'
-### Important Features
+### {{< var Headings.h6_2 >}}
   Following is a list of important features for the model:
-  | Dataset     |   Size                      |      Auto                   |
-  |-------------|-----|------|
-  | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
-  | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
 
-  ![Partial Dependance Graph](../input/pdg.png)
+  ![Global Variable Importance Graph](../input/Important_Features.png)
+  
+Partial Dependence Plots for Top-2 variables are shown below:
+![Partial Dependence Plot for Top-2 Variables](../input/PDP.png)
 
-### Model Performance
+
+
+
+### {{< var Headings.h6_3 >}}
   Following are the model performance statistics on validation and OOS test dataset:
   **Validation dataset**
 
-  ![Model Performance on Validation dataset](../input/roc.png)
+  ![Model Performance on Validation dataset](../input/Model_Perf_on_Validation_Dataset.png){width="400"}
 
   **Test dataset**
 
-  ![Model Performance on Test dataset](../input/roc.png)
+  ![Model Performance on Test dataset](../input/Model_Perf_on_Test_Dataset.png){width="400"}
 
-### Model Stability
+### {{< var Headings.h6_4 >}}
   Following are model stability statistics:
   **Train vs. Validation dataset**
-  ![Model Stability (Val vs. Train dataset)](../input/roc.png)
+  ![Model Stability (Val vs. Train dataset)](../input/Train%20_vs_%20Validation%20_dataset.png){width="400"}
 
   **Validation vs. Test dataset**
-  ![Model Stability (Val vs. Test dataset)](../input/roc.png)
+  ![Model Stability (Val vs. Test dataset)](../input/Validation_vs_Test%20dataset.png){width="400"}
 
-### Model Performance by Number of Features
-  Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.
+### {{< var Headings.h6_5 >}}
+Following is a summary of change in model performance statistics with increase in number of trees.
+    
+![Model Scoring History](../input/Scoring_History.png){width="500"}
+

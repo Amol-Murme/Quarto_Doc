@@ -1,0 +1,8 @@
+Statistics,Value
+Col sample rate per tree,0.8
+Histogram type,Auto
+Max Depth,15
+Min Rows,100
+Min Split Improvement,0.00001
+Ntrees,40
+Sample Rate,0.8

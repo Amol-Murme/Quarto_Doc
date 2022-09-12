@@ -1,0 +1,4 @@
+Dataset,Size,Features,Purpose
+Train,20000,70,Model training
+Validation,2500,70,Hyperparameter tuning
+OOS Test,2500,70,OOS performance estimation

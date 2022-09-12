@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ABC Bank Ltd.</title>
+<title>ABC Bank ltd.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,41 +37,15 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body>
+<body class="fullcontent">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="toc-section-number">1</span>  EXECUTIVE SUMMARY</a></li>
-  <li><a href="#model-performance-summary" id="toc-model-performance-summary" class="nav-link" data-scroll-target="#model-performance-summary"><span class="toc-section-number">2</span>  MODEL PERFORMANCE SUMMARY</a></li>
-  <li><a href="#var-dataset" id="toc-var-dataset" class="nav-link" data-scroll-target="#var-dataset"><span class="toc-section-number">3</span>  <strong>?var:dataset</strong></a></li>
-  <li><a href="#eda" id="toc-eda" class="nav-link" data-scroll-target="#eda"><span class="toc-section-number">4</span>  EDA</a></li>
-  <li><a href="#methodology-overview" id="toc-methodology-overview" class="nav-link" data-scroll-target="#methodology-overview"><span class="toc-section-number">5</span>  Methodology Overview</a>
-  <ul class="collapse">
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">5.1</span>  Data Preparation</a></li>
-  <li><a href="#feature-transformation" id="toc-feature-transformation" class="nav-link" data-scroll-target="#feature-transformation"><span class="toc-section-number">5.2</span>  Feature Transformation</a></li>
-  <li><a href="#model-tuning" id="toc-model-tuning" class="nav-link" data-scroll-target="#model-tuning"><span class="toc-section-number">5.3</span>  Model Tuning</a></li>
-  <li><a href="#model-performance-evaluation" id="toc-model-performance-evaluation" class="nav-link" data-scroll-target="#model-performance-evaluation"><span class="toc-section-number">5.4</span>  Model Performance Evaluation</a></li>
-  <li><a href="#model-stability" id="toc-model-stability" class="nav-link" data-scroll-target="#model-stability"><span class="toc-section-number">5.5</span>  Model Stability</a></li>
-  </ul></li>
-  <li><a href="#model-details" id="toc-model-details" class="nav-link" data-scroll-target="#model-details"><span class="toc-section-number">6</span>  Model Details</a>
-  <ul class="collapse">
-  <li><a href="#model-hyperparameters" id="toc-model-hyperparameters" class="nav-link" data-scroll-target="#model-hyperparameters"><span class="toc-section-number">6.1</span>  Model Hyperparameters</a></li>
-  <li><a href="#model-performance" id="toc-model-performance" class="nav-link" data-scroll-target="#model-performance"><span class="toc-section-number">6.2</span>  Model Performance</a></li>
-  <li><a href="#model-stability-1" id="toc-model-stability-1" class="nav-link" data-scroll-target="#model-stability-1"><span class="toc-section-number">6.3</span>  Model Stability</a></li>
-  <li><a href="#model-performance-by-number-of-features" id="toc-model-performance-by-number-of-features" class="nav-link" data-scroll-target="#model-performance-by-number-of-features"><span class="toc-section-number">6.4</span>  Model Performance by Number of Features</a></li>
-  </ul></li>
-  </ul>
-</nav>
-</div>
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ABC Bank Ltd.</h1>
+<h1 class="title">ABC Bank ltd.</h1>
 </div>
 
 
@@ -85,184 +59,247 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="executive-summary" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> EXECUTIVE SUMMARY</h2>
-<p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses xgboost with input data consisting of 20000 observations and 70 features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
+<section id="var-headings.h1" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h1">EXECUTIVE SUMMARY</h2>
+<p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses <strong>XGBoost</strong> with input data consisting of <strong>20000</strong> observations and <strong>70</strong> features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
+<div style="page-break-after: always;"></div>
 </section>
-<section id="model-performance-summary" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="model-performance-summary"><span class="header-section-number">2</span> MODEL PERFORMANCE SUMMARY</h2>
-<table class="table">
-<colgroup>
-<col style="width: 54%">
-<col style="width: 20%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dataset</th>
-<th>Size</th>
-<th>Auto</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Validation</td>
-<td><p><strong>?var:Validation.Size</strong></p></td>
-<td><p><strong>?var:Validation.Auto</strong></p></td>
-</tr>
-<tr class="even">
-<td>OSS Test</td>
-<td><p><strong>?var:OOS_test.Size</strong></p></td>
-<td><p><strong>?var:OOS_test.Auto</strong></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="var-dataset" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="var-dataset"><span class="header-section-number">3</span> <strong>?var:dataset</strong></h2>
-<p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
-<table class="table">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 28%">
-<col style="width: 26%">
-<col style="width: 24%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dataset</th>
-<th>Size</th>
-<th>Features</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Train</td>
-<td><p><strong>?var:Train.Size</strong></p></td>
-<td><p><strong>?var:Train.Features</strong></p></td>
-<td><p><strong>?var:Train.Purpose</strong></p></td>
-</tr>
-<tr class="even">
-<td>Validation</td>
-<td><p><strong>?var:Validation.Size</strong></p></td>
-<td><p><strong>?var:Validation.Features</strong></p></td>
-<td><p><strong>?var:Validation.Purpose</strong></p></td>
-</tr>
-<tr class="odd">
-<td>OSS Test</td>
-<td><p><strong>?var:OOS_test.Size</strong></p></td>
-<td><p><strong>?var:OOS_test.Features</strong></p></td>
-<td><p><strong>?var:OOS_test.Purpose</strong></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="eda" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="eda"><span class="header-section-number">4</span> EDA</h2>
-<p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../input/images.jpeg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Image</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="methodology-overview" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="methodology-overview"><span class="header-section-number">5</span> Methodology Overview</h2>
-<p><strong>?var:Algorithm.Name</strong> <strong>?var:Algorithm.Overview</strong></p>
-<p>Methodology Overview Table:</p>
-<p>Following is a summary of steps performed to train the model: <img src="../input/images.jpeg" class="img-fluid" alt="Model Development Pipeline"></p>
-<section id="data-preparation" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">5.1</span> Data Preparation</h3>
-<p><strong>?var:Data_Preparation</strong></p>
-</section>
-<section id="feature-transformation" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="feature-transformation"><span class="header-section-number">5.2</span> Feature Transformation</h3>
-<p><strong>?var:Feature_Transformation</strong></p>
-</section>
-<section id="model-tuning" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="model-tuning"><span class="header-section-number">5.3</span> Model Tuning</h3>
-<p><strong>?var:Model_Tunning</strong></p>
-</section>
-<section id="model-performance-evaluation" class="level3" data-number="5.4">
-<h3 data-number="5.4" class="anchored" data-anchor-id="model-performance-evaluation"><span class="header-section-number">5.4</span> Model Performance Evaluation</h3>
-<p><strong>?var:Model_Perfor_Eval</strong></p>
-</section>
-<section id="model-stability" class="level3" data-number="5.5">
-<h3 data-number="5.5" class="anchored" data-anchor-id="model-stability"><span class="header-section-number">5.5</span> Model Stability</h3>
-<p><strong>?var:Model_Stability</strong></p>
-</section>
-</section>
-<section id="model-details" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="model-details"><span class="header-section-number">6</span> Model Details</h2>
-<p><strong>?var:Model_Details.details</strong></p>
-<section id="model-hyperparameters" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="model-hyperparameters"><span class="header-section-number">6.1</span> Model Hyperparameters</h3>
-<p>Following is a summary of key model hyperparameters:</p>
-<div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<section id="var-headings.h2" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h2">MODEL PERFORMANCE SUMMARY</h2>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Dataset</th>
-<th>Size</th>
-<th>Auto</th>
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Size</th>
+<th style="text-align: left;">Auto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Validation</td>
-<td>1920</td>
-<td>75.84%</td>
+<td style="text-align: left;">Validation</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: left;">76.81%</td>
 </tr>
 <tr class="even">
-<td>OSS Test</td>
-<td>1990</td>
-<td>74.98%</td>
+<td style="text-align: left;">OOS Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: left;">76.91%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>‘+——–+————+——-+| Name | LastName | Age |+========+============+=======+| Name | LastName | Age |+——–+————+——-+| Juan | Lopez | 22 |+——–+————+——-+| Luisa | Perez | 24 |+——–+————+——-+| Ana | Sanchez | 23 |+——–+————+——-+’ ### Important Features Following is a list of important features for the model: | Dataset | Size | Auto | |————-|—–|——| | Validation | <strong>?var:Validation.Size</strong> | <strong>?var:Validation.Auto</strong> | | OSS Test | <strong>?var:OOS_test.Size</strong> | <strong>?var:OOS_test.Auto</strong> |</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../input/pdg.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Partial Dependance Graph</figcaption><p></p>
-</figure>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="var-headings.h3" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h3">DATASET</h2>
+<p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Size</th>
+<th style="text-align: right;">Features</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Train</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Model training</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validation</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Hyperparameter tuning</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OOS Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">OOS performance estimation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="var-headings.h4" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h4">EDA</h2>
+<p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Rows</th>
+<th style="text-align: right;">Columns</th>
+<th style="text-align: right;">Numeric</th>
+<th style="text-align: right;">Category</th>
+<th style="text-align: right;">Time</th>
+<th style="text-align: left;">String</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Train</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Val</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0s</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="var-headings.h5" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h5">Methodology Overview</h2>
+<p>XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</p>
+<p>Following is a summary of steps performed to train the model: <img src="../input/Model_development_pipeline.png" class="img-fluid" alt="Model Development Pipeline"></p>
+<section id="var-headings.h5_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_1">Data Preparation</h3>
+<p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
+</section>
+<section id="var-headings.h5_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_2">Feature Transformation</h3>
+<p>Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</p>
+</section>
+<section id="var-headings.h5_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_3">Model Tuning</h3>
+<p>Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</p>
+</section>
+<section id="var-headings.h5_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_4">Model Performance Evaluation</h3>
+<p>Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</p>
+</section>
+<section id="var-headings.h5_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_5">Model Stability</h3>
+<p>Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="var-headings.h6" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings.h6">Model Details</h2>
+<p>Detailed Information regarding model.</p>
+<section id="var-headings.h6_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_1">Model Hyperparameters</h3>
+<p>Following is a summary of key model hyperparameters:</p>
+<div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistics</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Col sample rate per tree</td>
+<td style="text-align: left;">0.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Histogram type</td>
+<td style="text-align: left;">Auto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Max Depth</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Min Rows</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Min Split Improvement</td>
+<td style="text-align: left;">0.00001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ntrees</td>
+<td style="text-align: left;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample Rate</td>
+<td style="text-align: left;">0.8</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
-<section id="model-performance" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="model-performance"><span class="header-section-number">6.2</span> Model Performance</h3>
+<section id="var-headings.h6_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_2">Important Features</h3>
+<p>Following is a list of important features for the model:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../input/Important_Features.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Global Variable Importance Graph</figcaption><p></p>
+</figure>
+</div>
+<p>Partial Dependence Plots for Top-2 variables are shown below: <img src="../input/PDP.png" class="img-fluid" alt="Partial Dependence Plot for Top-2 Variables"></p>
+</section>
+<section id="var-headings.h6_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_3">Model Performance</h3>
 <p>Following are the model performance statistics on validation and OOS test dataset: <strong>Validation dataset</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../input/roc.png" class="img-fluid figure-img"></p>
+<p><img src="../input/Model_Perf_on_Validation_Dataset.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Model Performance on Validation dataset</figcaption><p></p>
 </figure>
 </div>
 <p><strong>Test dataset</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../input/roc.png" class="img-fluid figure-img"></p>
+<p><img src="../input/Model_Perf_on_Test_Dataset.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Model Performance on Test dataset</figcaption><p></p>
 </figure>
 </div>
 </section>
-<section id="model-stability-1" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="model-stability-1"><span class="header-section-number">6.3</span> Model Stability</h3>
-<p>Following are model stability statistics: <strong>Train vs.&nbsp;Validation dataset</strong> <img src="../input/roc.png" class="img-fluid" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
-<p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../input/roc.png" class="img-fluid" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
+<section id="var-headings.h6_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_4">Model Stability</h3>
+<p>Following are model stability statistics: <strong>Train vs.&nbsp;Validation dataset</strong> <img src="../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
+<p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../input/Validation_vs_Test%20dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
 </section>
-<section id="model-performance-by-number-of-features" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="model-performance-by-number-of-features"><span class="header-section-number">6.4</span> Model Performance by Number of Features</h3>
-<p>Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.</p>
+<section id="var-headings.h6_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_5">Model Scoring History</h3>
+<p>Following is a summary of change in model performance statistics with increase in number of trees.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../input/Scoring_History.png" class="img-fluid figure-img" width="500"></p>
+<p></p><figcaption class="figure-caption">Model Scoring History</figcaption><p></p>
+</figure>
+</div>
 </section>
 </section>
 
