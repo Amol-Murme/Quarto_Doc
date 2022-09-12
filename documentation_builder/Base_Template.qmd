@@ -11,7 +11,12 @@ number-sections: true
 number-depth: 3
 standalone: true
 toc-title: Contents
-    # highlight-style: github
+format:
+  html:
+    output-file: "output/html/ABC Bank Ltd.html"
+  docx:
+    output-file: "output/docx/ABC Bank Ltd.docx"  
+
 ---
 
 ## EXECUTIVE SUMMARY
@@ -35,7 +40,7 @@ toc-title: Contents
 ## EDA
   Following is a summary of input data. Refer Annexure-1 for detailed EDA.
   
-  ![Image](input_data/images.jpeg)
+  ![Image](../input/images.jpeg)
 
 ## Methodology Overview
   {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
@@ -44,7 +49,7 @@ Methodology Overview Table:
 
 
  Following is a summary of steps performed to train the model:
- ![Model Development Pipeline](input_data/images.jpeg)
+ ![Model Development Pipeline](../input/images.jpeg)
 
 ### Data Preparation
   {{< var Data_Preparation >}}
@@ -73,7 +78,7 @@ alpha = 0.1
 ratio = 0.1
 import pandas as pd
 
-df = pd.read_csv('input_data/test.csv')
+df = pd.read_csv('../input/test.csv')
 #print(df.to_string(index= False))
 
 from IPython.display import Markdown
@@ -100,25 +105,25 @@ Markdown(tabulate(
   | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
   | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
 
-  ![Partial Dependance Graph](input_data/pdg.png)
+  ![Partial Dependance Graph](../input/pdg.png)
 
 ### Model Performance
   Following are the model performance statistics on validation and OOS test dataset:
   **Validation dataset**
 
-  ![Model Performance on Validation dataset](input_data/roc.png)
+  ![Model Performance on Validation dataset](../input/roc.png)
 
   **Test dataset**
 
-  ![Model Performance on Test dataset](input_data/roc.png)
+  ![Model Performance on Test dataset](../input/roc.png)
 
 ### Model Stability
   Following are model stability statistics:
   **Train vs. Validation dataset**
-  ![Model Stability (Val vs. Train dataset)](input_data/roc.png)
+  ![Model Stability (Val vs. Train dataset)](../input/roc.png)
 
   **Validation vs. Test dataset**
-  ![Model Stability (Val vs. Test dataset)](input_data/roc.png)
+  ![Model Stability (Val vs. Test dataset)](../input/roc.png)
 
 ### Model Performance by Number of Features
   Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.
