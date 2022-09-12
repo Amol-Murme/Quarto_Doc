@@ -1,7 +1,0 @@
-alpha: "Sentiment analysis"
-ration: 5
-Validation:
-  Auto: 75.84%
-  Features: 70
-  Purpose: Hyperparameter tuning
-  Size: 1920

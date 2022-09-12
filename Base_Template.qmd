@@ -4,15 +4,13 @@ title: "ABC Bank Ltd."
 execute:
    code-fold: true
    echo: false
-format:
-   docx:
-    toc: true
-    toc-depth: 3
-    toc-location: right
-    number-sections: true
-    number-depth: 3
-    standalone: true
-    toc-title: Contents
+toc: true
+toc-depth: 3
+toc-location: right
+number-sections: true
+number-depth: 3
+standalone: true
+toc-title: Contents
     # highlight-style: github
 ---
 
@@ -25,7 +23,7 @@ format:
   | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
   | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
 
-## DATASET
+## {{< var dataset >}}
   Following dataset were used for model training, tuning and OOS performance estimation:
 
   | Dataset   |   Size       |   Features  | Purpose    |
@@ -37,7 +35,7 @@ format:
 ## EDA
   Following is a summary of input data. Refer Annexure-1 for detailed EDA.
   
-  ![Image](Images/images.jpeg)
+  ![Image](input_data/images.jpeg)
 
 ## Methodology Overview
   {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
@@ -46,7 +44,7 @@ Methodology Overview Table:
 
 
  Following is a summary of steps performed to train the model:
- ![Model Development Pipeline](Images/images.jpeg)
+ ![Model Development Pipeline](input_data/images.jpeg)
 
 ### Data Preparation
   {{< var Data_Preparation >}}
@@ -75,7 +73,7 @@ alpha = 0.1
 ratio = 0.1
 import pandas as pd
 
-df = pd.read_csv('Data source/test.csv')
+df = pd.read_csv('input_data/test.csv')
 #print(df.to_string(index= False))
 
 from IPython.display import Markdown
@@ -102,25 +100,25 @@ Markdown(tabulate(
   | Validation  | {{< var Validation.Size >}} | {{< var Validation.Auto >}} |
   | OSS Test    | {{< var OOS_test.Size >}}   | {{< var OOS_test.Auto >}}   |
 
-  ![Partial Dependance Graph](Images/pdg.png)
+  ![Partial Dependance Graph](input_data/pdg.png)
 
 ### Model Performance
   Following are the model performance statistics on validation and OOS test dataset:
   **Validation dataset**
 
-  ![Model Performance on Validation dataset](Images/roc.png)
+  ![Model Performance on Validation dataset](input_data/roc.png)
 
   **Test dataset**
 
-  ![Model Performance on Test dataset](Images/roc.png)
+  ![Model Performance on Test dataset](input_data/roc.png)
 
 ### Model Stability
   Following are model stability statistics:
   **Train vs. Validation dataset**
-  ![Model Stability (Val vs. Train dataset)](Images/roc.png)
+  ![Model Stability (Val vs. Train dataset)](input_data/roc.png)
 
   **Validation vs. Test dataset**
-  ![Model Stability (Val vs. Test dataset)](Images/roc.png)
+  ![Model Stability (Val vs. Test dataset)](input_data/roc.png)
 
 ### Model Performance by Number of Features
   Following is a summary of model performance, if it is replaced with a model with subset of important features. This may be used to identify if final model’s performance maybe matched with a simpler model with less number of features.
