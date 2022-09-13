@@ -89,13 +89,13 @@ def rename_paths():
     for link in links:
         if link.has_attr('href'):
             text = link['href']
-            text.replace('Base_Template_files/','/doc_statics/Base_Template_files/')
+            text_out = text.replace('Base_Template_files/','/doc_statics/Base_Template_files/')
             path = r"{{ url_for('static', path='" + text_out + r"') }}"
-            # print(path)
+            print(path)
             link['href'] = path
 
-    with open('../app/templates/Base_Template.html', 'w') as f:
-        f.write(str(bs))
+    with open('../app/templates/Base_Template.html', 'wb') as f:
+        f.write(bs.prettify("utf-8"))
 
 if __name__ == "__main__":
     build_doc()

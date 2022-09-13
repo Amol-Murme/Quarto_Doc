@@ -1,18 +1,8 @@
 Validation:
-  Size: 1920
   Auto: 75.84%
-  Features: 70
-  Purpose: Hyperparameter tuning
 
 OOS_test:
-  Size: 1990
   Auto: 74.98%
-  Features: 70
-  Purpose: OOS performance estimation
-Train:
-  Size: 1690
-  Features: 70
-  Purpose: Model training
 
 Algorithm:
   Name: XGBoost
