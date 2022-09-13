@@ -67,25 +67,30 @@ ul.task-list li input[type="checkbox"] {
 <section id="var-headings.h2" class="level2">
 <h2 class="anchored" data-anchor-id="var-headings.h2">MODEL PERFORMANCE SUMMARY</h2>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Dataset</th>
-<th style="text-align: right;">Size</th>
-<th style="text-align: left;">Auto</th>
+<th style="text-align: center;">Dataset</th>
+<th style="text-align: center;">Size</th>
+<th style="text-align: center;">Auto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Validation</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: left;">76.81%</td>
+<td style="text-align: center;">Validation</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">76.81%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">OOS Test</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: left;">76.91%</td>
+<td style="text-align: center;">OOS Test</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">76.91%</td>
 </tr>
 </tbody>
 </table>
@@ -97,34 +102,40 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="var-headings.h3">DATASET</h2>
 <p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Dataset</th>
-<th style="text-align: right;">Size</th>
-<th style="text-align: right;">Features</th>
-<th style="text-align: left;">Purpose</th>
+<th style="text-align: center;">Dataset</th>
+<th style="text-align: center;">Size</th>
+<th style="text-align: center;">Features</th>
+<th style="text-align: center;">Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Train</td>
-<td style="text-align: right;">20000</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: left;">Model training</td>
+<td style="text-align: center;">Train</td>
+<td style="text-align: center;">20000</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">Model training</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Validation</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: left;">Hyperparameter tuning</td>
+<td style="text-align: center;">Validation</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">Hyperparameter tuning</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">OOS Test</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: left;">OOS performance estimation</td>
+<td style="text-align: center;">OOS Test</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">OOS performance estimation</td>
 </tr>
 </tbody>
 </table>
@@ -136,46 +147,55 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="var-headings.h4">EDA</h2>
 <p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Dataset</th>
-<th style="text-align: right;">Rows</th>
-<th style="text-align: right;">Columns</th>
-<th style="text-align: right;">Numeric</th>
-<th style="text-align: right;">Category</th>
-<th style="text-align: right;">Time</th>
-<th style="text-align: left;">String</th>
+<th style="text-align: center;">Dataset</th>
+<th style="text-align: center;">Rows</th>
+<th style="text-align: center;">Columns</th>
+<th style="text-align: center;">Numeric</th>
+<th style="text-align: center;">Category</th>
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">String</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Train</td>
-<td style="text-align: right;">20000</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">69</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">0</td>
+<td style="text-align: center;">Train</td>
+<td style="text-align: center;">20000</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">69</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Val</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">69</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">0</td>
+<td style="text-align: center;">Val</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">69</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Test</td>
-<td style="text-align: right;">2500</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">69</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">0s</td>
+<td style="text-align: center;">Test</td>
+<td style="text-align: center;">2500</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">69</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0s</td>
 </tr>
 </tbody>
 </table>
@@ -186,7 +206,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="var-headings.h5" class="level2">
 <h2 class="anchored" data-anchor-id="var-headings.h5">Methodology Overview</h2>
 <p>XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</p>
-<p>Following is a summary of steps performed to train the model: <img src="../../input/Model_development_pipeline.png" class="img-fluid" alt="Model Development Pipeline"></p>
+<p>Following is a summary of steps performed to train the model:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../input/Model_development_pipeline.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Model Development Pipeline</figcaption><p></p>
+</figure>
+</div>
 <section id="var-headings.h5_1" class="level3">
 <h3 class="anchored" data-anchor-id="var-headings.h5_1">Data Preparation</h3>
 <p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
@@ -216,42 +242,46 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="var-headings.h6_1">Model Hyperparameters</h3>
 <p>Following is a summary of key model hyperparameters:</p>
 <div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Statistics</th>
-<th style="text-align: left;">Value</th>
+<th style="text-align: center;">Statistics</th>
+<th style="text-align: center;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Col sample rate per tree</td>
-<td style="text-align: left;">0.8</td>
+<td style="text-align: center;">Col sample rate per tree</td>
+<td style="text-align: center;">0.8</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Histogram type</td>
-<td style="text-align: left;">Auto</td>
+<td style="text-align: center;">Histogram type</td>
+<td style="text-align: center;">Auto</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Max Depth</td>
-<td style="text-align: left;">15</td>
+<td style="text-align: center;">Max Depth</td>
+<td style="text-align: center;">15</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Min Rows</td>
-<td style="text-align: left;">100</td>
+<td style="text-align: center;">Min Rows</td>
+<td style="text-align: center;">100</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Min Split Improvement</td>
-<td style="text-align: left;">0.00001</td>
+<td style="text-align: center;">Min Split Improvement</td>
+<td style="text-align: center;">0.00001</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Ntrees</td>
-<td style="text-align: left;">40</td>
+<td style="text-align: center;">Ntrees</td>
+<td style="text-align: center;">40</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Sample Rate</td>
-<td style="text-align: left;">0.8</td>
+<td style="text-align: center;">Sample Rate</td>
+<td style="text-align: center;">0.8</td>
 </tr>
 </tbody>
 </table>
@@ -267,11 +297,18 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figcaption class="figure-caption">Global Variable Importance Graph</figcaption><p></p>
 </figure>
 </div>
-<p>Partial Dependence Plots for Top-2 variables are shown below: <img src="../../input/PDP.png" class="img-fluid" alt="Partial Dependence Plot for Top-2 Variables"></p>
+<p>Partial Dependence Plots for Top-2 variables are shown below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../input/PDP.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Partial Dependence Plot for Top-2 Variables</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="var-headings.h6_3" class="level3">
 <h3 class="anchored" data-anchor-id="var-headings.h6_3">Model Performance</h3>
-<p>Following are the model performance statistics on validation and OOS test dataset: <strong>Validation dataset</strong></p>
+<p>Following are the model performance statistics on validation and OOS test dataset:</p>
+<p><strong>Validation dataset</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../input/Model_Perf_on_Validation_Dataset.png" class="img-fluid figure-img" width="400"></p>
@@ -288,7 +325,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="var-headings.h6_4" class="level3">
 <h3 class="anchored" data-anchor-id="var-headings.h6_4">Model Stability</h3>
-<p>Following are model stability statistics: <strong>Train vs.&nbsp;Validation dataset</strong> <img src="../../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
+<p>Following are model stability statistics:</p>
+<p><strong>Train vs.&nbsp;Validation dataset</strong> <img src="../../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
 <p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../../input/Validation_vs_Test%20dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
 </section>
 <section id="var-headings.h6_5" class="level3">
