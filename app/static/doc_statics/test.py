@@ -15,15 +15,15 @@ base = os.path.dirname(os.path.abspath(__file__))
 html = open(os.path.join(base, 'Base_Template.html'))
 bs = BeautifulSoup(html, 'html.parser')
 
-images = bs.find_all('img')
-for img in images:
-    if img.has_attr('src'):
-        print(img['src'])
+# images = bs.find_all('img')
+# for img in images:
+#     if img.has_attr('src'):
+#         print(img['src'])
 
-scripts = bs.find_all('script')
-for script in scripts:
-    if script.has_attr('src'):
-        print(script['src'])
+# scripts = bs.find_all('script')
+# for script in scripts:
+#     if script.has_attr('src'):
+#         print(script['src'])
 
 links = bs.find_all('link')
 for link in links:
