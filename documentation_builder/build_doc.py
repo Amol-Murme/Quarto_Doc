@@ -3,6 +3,8 @@ import subprocess
 import shutil
 import os
 from bs4 import BeautifulSoup
+import re
+import yaml
 
 def build_doc():
 
@@ -26,7 +28,6 @@ def build_doc():
                                   "--output-dir", pdf_output_path], 
                                  universal_newlines=True)
 
-
 def rename_img_paths():
     with open("../output/html/Base_Template.html","r") as f:
         text= f.read()
@@ -34,7 +35,9 @@ def rename_img_paths():
     # print(text)   
 
     text = text.replace("../input/", "../../input/") 
-    text = text.replace(" ", " ") 
+    special_char = u"\u00a0"
+    text = text.replace(special_char, " ") 
+    # text = text.replace(" ", " ") 
 
     with open("../output/html/Base_Template.html","w") as f:
         f.write(text)
@@ -62,7 +65,6 @@ def copy_files():
         os.remove(html_dest_file)
     html_res = shutil.move(html_file, html_dest)    
     
-
 def rename_paths():
     base = os.path.dirname(os.path.abspath(__file__))
     html = open(os.path.join(base, '../app/templates/Base_Template.html'))
@@ -92,14 +94,49 @@ def rename_paths():
             text = link['href']
             text_out = text.replace('Base_Template_files/','/doc_statics/Base_Template_files/')
             path = r"{{ url_for('static', path='" + text_out + r"') }}"
-            print(path)
             link['href'] = path
 
     with open('../app/templates/Base_Template.html', 'wb') as f:
         f.write(bs.prettify("utf-8"))
+
+def make_content_editable():
+    html_contents = open("../app/templates/Base_Template.html", "r")
+
+    soup = BeautifulSoup(html_contents, 'html.parser')
+    # print(html_contents)
+
+
+    #read .yml variables
+    with open('_variables.yml') as file:
+        var_list = yaml.load(file, Loader=yaml.FullLoader)
+
+    # print(var_list)
+
+    #list of probable elements to search
+    elements = ['p', 'h2', 'h3', 'strong']
+
+    for k,v in var_list.items():
+        # print(k)
+        for ele in elements:
+            matched_tags = soup.find_all(lambda tag: (len(tag.find_all()) == 0 )
+                                                    and(str(tag.text).strip() == str(v).strip())
+                                                    and (ele in tag.name)
+                                                    and ( "figcaption" not in tag.name )
+                                        )
+
+            if matched_tags != []:
+                for tag in matched_tags:
+                    tag["contenteditable"] = "true"
+                    tag["style"] = "background-color:powderblue;"
+                    tag["id"] = str(k)
+
+
+    with open('../app/templates/new_Base_Template.html', 'wb') as f:
+            f.write(soup.prettify("utf-8"))
 
 if __name__ == "__main__":
     build_doc()
     rename_img_paths()
     copy_files()
     rename_paths()
+    make_content_editable()

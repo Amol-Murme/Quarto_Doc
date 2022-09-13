@@ -28,7 +28,7 @@ jupyter: python3
 ---
 
 ## {{< var Headings_h1 >}}
-  This document covers the model development process for **{{< var Algorithm_Model >}}** model. The model is a classification model that uses **{{< var Algorithm_Name >}}** with input data consisting of **{{< var Algorithm_No_of_Observation >}}** observations and **{{< var Algorithm_Features >}}** features. The model achieves Auto of **{{< var Validation_Auto >}}** on validation dataset and **{{< var OOS_test.Auto >}}** on Out-of-Sample (OOS) test dataset.
+  This document covers the model development process for **{{< var Algorithm_Model >}}** model. The model is a classification model that uses **{{< var Algorithm_Name >}}** with input data consisting of **{{< var Algorithm_No_of_Observation >}}** observations and **{{< var Algorithm_Features >}}** features. The model achieves Auto of **{{< var Validation_Auto >}}** on validation dataset and **{{< var OOS_test_Auto >}}** on Out-of-Sample (OOS) test dataset.
 {{< pagebreak >}}
 ## {{< var Headings_h2 >}}
 

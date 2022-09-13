@@ -59,15 +59,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="var-headings.h1" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h1">EXECUTIVE SUMMARY</h2>
+<section id="var-headings_h1" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h1">EXECUTIVE SUMMARY</h2>
 <p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses <strong>XGBoost</strong> with input data consisting of <strong>20000</strong> observations and <strong>70</strong> features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings.h2" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h2">MODEL PERFORMANCE SUMMARY</h2>
+<section id="var-headings_h2" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h2">MODEL PERFORMANCE SUMMARY</h2>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 33%">
@@ -98,11 +98,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings.h3" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h3">DATASET</h2>
+<section id="var-headings_h3" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h3">DATASET</h2>
 <p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 25%">
@@ -143,11 +143,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings.h4" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h4">EDA</h2>
+<section id="var-headings_h4" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h4">EDA</h2>
 <p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 15%">
@@ -203,8 +203,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings.h5" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h5">Methodology Overview</h2>
+<section id="var-headings_h5" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h5">Methodology Overview</h2>
 <p>XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</p>
 <p>Following is a summary of steps performed to train the model:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -213,36 +213,36 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figcaption class="figure-caption">Model Development Pipeline</figcaption><p></p>
 </figure>
 </div>
-<section id="var-headings.h5_1" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h5_1">Data Preparation</h3>
+<section id="var-headings_h5_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h5_1">Data Preparation</h3>
 <p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
 </section>
-<section id="var-headings.h5_2" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h5_2">Feature Transformation</h3>
+<section id="var-headings_h5_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h5_2">Feature Transformation</h3>
 <p>Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</p>
 </section>
-<section id="var-headings.h5_3" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h5_3">Model Tuning</h3>
+<section id="var-headings_h5_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h5_3">Model Tuning</h3>
 <p>Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</p>
 </section>
-<section id="var-headings.h5_4" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h5_4">Model Performance Evaluation</h3>
+<section id="var-headings_h5_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h5_4">Model Performance Evaluation</h3>
 <p>Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</p>
 </section>
-<section id="var-headings.h5_5" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h5_5">Model Stability</h3>
+<section id="var-headings_h5_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h5_5">Model Stability</h3>
 <p>Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
-<section id="var-headings.h6" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings.h6">Model Details</h2>
+<section id="var-headings_h6" class="level2">
+<h2 class="anchored" data-anchor-id="var-headings_h6">Model Details</h2>
 <p>Detailed Information regarding model.</p>
-<section id="var-headings.h6_1" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h6_1">Model Hyperparameters</h3>
+<section id="var-headings_h6_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h6_1">Model Hyperparameters</h3>
 <p>Following is a summary of key model hyperparameters:</p>
 <div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 50%">
@@ -288,8 +288,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="var-headings.h6_2" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h6_2">Important Features</h3>
+<section id="var-headings_h6_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h6_2">Important Features</h3>
 <p>Following is a list of important features for the model:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -305,8 +305,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="var-headings.h6_3" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h6_3">Model Performance</h3>
+<section id="var-headings_h6_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h6_3">Model Performance</h3>
 <p>Following are the model performance statistics on validation and OOS test dataset:</p>
 <p><strong>Validation dataset</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -323,14 +323,14 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="var-headings.h6_4" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h6_4">Model Stability</h3>
+<section id="var-headings_h6_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h6_4">Model Stability</h3>
 <p>Following are model stability statistics:</p>
 <p><strong>Train vs.&nbsp;Validation dataset</strong> <img src="../../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
 <p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../../input/Validation_vs_Test%20dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
 </section>
-<section id="var-headings.h6_5" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings.h6_5">Model Scoring History</h3>
+<section id="var-headings_h6_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-headings_h6_5">Model Scoring History</h3>
 <p>Following is a summary of change in model performance statistics with increase in number of trees.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

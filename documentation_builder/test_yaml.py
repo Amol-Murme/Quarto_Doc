@@ -19,31 +19,21 @@ with open('_variables.yml') as file:
 #list of probable elements to search
 elements = ['p', 'h2', 'h3', 'strong']
 
-#         # html_line["contenteditable"] = "true"
-
 for k,v in var_list.items():
-    print(k)
-    # string_search = r"^"+str(v)+r"$"
-    # print(string_search)
-    # my_regex = re.compile(str(v))
-    # print(my_regex)
+    # print(k)
     for ele in elements:
         matched_tags = soup.find_all(lambda tag: (len(tag.find_all()) == 0 )
-                                                #  and (tag.find_all(ele,text=str(v)))
-                                                #   and (str(v) in  tag.text)
-                                                 and(str(tag.text).strip() == str(v).strip())
+                                                  and(str(tag.text).strip() == str(v).strip())
                                                   and (ele in tag.name)
-                                                #   and (len(tag.attrs) <=2)
+                                                  and ( "figcaption" not in tag.name )
                                     )
 
         if matched_tags != []:
-            print(ele)
-            print(matched_tags)
-            # print(type(matched_tags))
-            # for i in matched_tags:
-            #     print(str(i.text).strip() == str(v).strip())
-        print("="*50)
-# for matched_tag in matched_tags:
-#     print("Matched:", matched_tag)
+            for tag in matched_tags:
+                tag["contenteditable"] = "true"
+                tag["style"] = "background-color:powderblue;"
+                tag["id"] = str(k)
 
 
+with open('../app/templates/new_Base_Template.html', 'wb') as f:
+        f.write(soup.prettify("utf-8"))

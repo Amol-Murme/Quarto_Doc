@@ -18,7 +18,7 @@ async def read_item(request:Request):
 
 @api.get("/base", response_class=HTMLResponse)
 async def read_item(request:Request):
-    return templates.TemplateResponse("Base_Template.html",{'request':request})    
+    return templates.TemplateResponse("new_Base_Template.html",{'request':request})    
 
 @api.get("/api/render_html")
 def calculate():
