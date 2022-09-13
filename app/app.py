@@ -16,6 +16,10 @@ templates = Jinja2Templates(directory="templates")
 async def read_item(request:Request):
     return templates.TemplateResponse("index.html",{'request':request})
 
+@api.get("/base", response_class=HTMLResponse)
+async def read_item(request:Request):
+    return templates.TemplateResponse("Base_Template.html",{'request':request})    
+
 @api.get("/api/render_html")
 def calculate():
     html_output = subprocess.call(["quarto", "render", "hello.qmd"], universal_newlines=True)

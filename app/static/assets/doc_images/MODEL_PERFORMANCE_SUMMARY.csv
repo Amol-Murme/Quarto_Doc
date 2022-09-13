@@ -1,0 +1,4 @@
+Dataset,Size,Auto
+Validation,2500,76.81%
+OOS Test,2500,76.91%
+

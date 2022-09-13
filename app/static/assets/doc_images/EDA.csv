@@ -1,0 +1,4 @@
+Dataset,Rows,Columns,Numeric,Category,Time,String
+Train,20000,70,69,1,0,0
+Val,2500,70,69,1,0,0
+Test,2500,70,69,1,0,0s

@@ -1,6 +1,8 @@
 from os import rename
 import subprocess
 import shutil
+import os
+from bs4 import BeautifulSoup
 
 def build_doc():
 
@@ -38,18 +40,65 @@ def rename_img_paths():
 
 def copy_files():
     img_source =  "../input/"
-    img_dest = "../app/static/assets/images"
+    img_dest = "../app/static/doc_images"
 
     files_source = "../output/html/"
-    files_dest = "../app/static/"
+    files_dest = "../app/static/doc_statics"
 
-    img_res = shutil.copyfile(img_source, img_dest)
-    file_res = shutil.copyfile(files_source, files_dest)
+    html_file = "../app/static/doc_statics/Base_Template.html"
+    html_dest = "../app/templates/"
+    html_dest_file = "../app/templates/Base_Template.html"
 
+    if os.path.exists(img_dest):
+        shutil.rmtree(img_dest)
+    img_res = shutil.copytree(img_source, img_dest)
+
+    if os.path.exists(files_dest):
+        shutil.rmtree(files_dest)    
+    file_res = shutil.copytree(files_source, files_dest)
+
+    if os.path.exists(html_dest_file):
+        os.remove(html_dest_file)
+    html_res = shutil.move(html_file, html_dest)    
     
 
+def rename_paths():
+    base = os.path.dirname(os.path.abspath(__file__))
+    html = open(os.path.join(base, '../app/templates/Base_Template.html'))
+    bs = BeautifulSoup(html, 'html.parser')
 
+    images = bs.find_all('img')
+    for img in images:
+        if img.has_attr('src'):
+            text = img['src']
+            text_out = text.replace('../../input/','/doc_images/')
+            path = r"{{ url_for('static', path='" + text_out + r"') }}"
+            # print(path)
+            img['src'] = path
+
+    scripts = bs.find_all('script')
+    for script in scripts:
+        if script.has_attr('src'):
+            text = script['src']
+            text_out = text.replace('Base_Template_files/','/doc_statics/Base_Template_files/')
+            path = r"{{ url_for('static', path='" + text_out + r"') }}"
+            # print(path)
+            script['src'] = path
+
+    links = bs.find_all('link')
+    for link in links:
+        if link.has_attr('href'):
+            text = link['href']
+            text.replace('Base_Template_files/','/doc_statics/Base_Template_files/')
+            path = r"{{ url_for('static', path='" + text_out + r"') }}"
+            # print(path)
+            link['href'] = path
+
+    with open('../app/templates/Base_Template.html', 'w') as f:
+        f.write(str(bs))
 
 if __name__ == "__main__":
     build_doc()
     rename_img_paths()
+    copy_files()
+    rename_paths()

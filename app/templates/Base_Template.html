@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="utf-8"/>
+<meta content="quarto-1.1.189" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>ABC Bank ltd.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/clipboard/clipboard.min.js') }}"></script>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/quarto-html/quarto.js') }}"></script>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/quarto-html/popper.min.js') }}"></script>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/quarto-html/tippy.umd.min.js') }}"></script>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/quarto-html/anchor.min.js') }}"></script>
+<link href="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/bootstrap/bootstrap.min.js') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/bootstrap/bootstrap.min.js') }}" id="quarto-text-highlighting-styles" rel="stylesheet"/>
+<script src="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/bootstrap/bootstrap.min.js') }}"></script>
+<link href="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/bootstrap/bootstrap.min.js') }}" rel="stylesheet"/>
+<link data-mode="light" href="{{ url_for('static', path='/doc_statics/Base_Template_files/libs/bootstrap/bootstrap.min.js') }}" id="quarto-bootstrap" rel="stylesheet"/>
+</head>
+<body class="fullcontent">
+<div class="page-columns page-rows-contents page-layout-article" id="quarto-content">
+<main class="content" id="quarto-document-content">
+<header class="quarto-title-block default" id="title-block-header">
+<div class="quarto-title">
+<h1 class="title">ABC Bank ltd.</h1>
+</div>
+<div class="quarto-title-meta">
+</div>
+</header>
+<section class="level2" id="var-headings.h1">
+<h2 class="anchored" data-anchor-id="var-headings.h1">EXECUTIVE SUMMARY</h2>
+<p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses <strong>XGBoost</strong> with input data consisting of <strong>20000</strong> observations and <strong>70</strong> features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section class="level2" id="var-headings.h2">
+<h2 class="anchored" data-anchor-id="var-headings.h2">MODEL PERFORMANCE SUMMARY</h2>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Size</th>
+<th style="text-align: left;">Auto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Validation</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: left;">76.81%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OOS Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: left;">76.91%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section class="level2" id="var-headings.h3">
+<h2 class="anchored" data-anchor-id="var-headings.h3">DATASET</h2>
+<p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Size</th>
+<th style="text-align: right;">Features</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Train</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Model training</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validation</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">Hyperparameter tuning</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OOS Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">OOS performance estimation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section class="level2" id="var-headings.h4">
+<h2 class="anchored" data-anchor-id="var-headings.h4">EDA</h2>
+<p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="15">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">Rows</th>
+<th style="text-align: right;">Columns</th>
+<th style="text-align: right;">Numeric</th>
+<th style="text-align: right;">Category</th>
+<th style="text-align: right;">Time</th>
+<th style="text-align: left;">String</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Train</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Val</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">0s</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section class="level2" id="var-headings.h5">
+<h2 class="anchored" data-anchor-id="var-headings.h5">Methodology Overview</h2>
+<p>XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</p>
+<p>Following is a summary of steps performed to train the model: <img alt="Model Development Pipeline" class="img-fluid" src="{{ url_for('static', path='/doc_images/Model_development_pipeline.png') }}"/></p>
+<section class="level3" id="var-headings.h5_1">
+<h3 class="anchored" data-anchor-id="var-headings.h5_1">Data Preparation</h3>
+<p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e. finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
+</section>
+<section class="level3" id="var-headings.h5_2">
+<h3 class="anchored" data-anchor-id="var-headings.h5_2">Feature Transformation</h3>
+<p>Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</p>
+</section>
+<section class="level3" id="var-headings.h5_3">
+<h3 class="anchored" data-anchor-id="var-headings.h5_3">Model Tuning</h3>
+<p>Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</p>
+</section>
+<section class="level3" id="var-headings.h5_4">
+<h3 class="anchored" data-anchor-id="var-headings.h5_4">Model Performance Evaluation</h3>
+<p>Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</p>
+</section>
+<section class="level3" id="var-headings.h5_5">
+<h3 class="anchored" data-anchor-id="var-headings.h5_5">Model Stability</h3>
+<p>Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section class="level2" id="var-headings.h6">
+<h2 class="anchored" data-anchor-id="var-headings.h6">Model Details</h2>
+<p>Detailed Information regarding model.</p>
+<section class="level3" id="var-headings.h6_1">
+<h3 class="anchored" data-anchor-id="var-headings.h6_1">Model Hyperparameters</h3>
+<p>Following is a summary of key model hyperparameters:</p>
+<div class="cell" data-execution_count="4" data-tags='["parameters"]'>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistics</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Col sample rate per tree</td>
+<td style="text-align: left;">0.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Histogram type</td>
+<td style="text-align: left;">Auto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Max Depth</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Min Rows</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Min Split Improvement</td>
+<td style="text-align: left;">0.00001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ntrees</td>
+<td style="text-align: left;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample Rate</td>
+<td style="text-align: left;">0.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="level3" id="var-headings.h6_2">
+<h3 class="anchored" data-anchor-id="var-headings.h6_2">Important Features</h3>
+<p>Following is a list of important features for the model:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img class="img-fluid figure-img" src="{{ url_for('static', path='/doc_images/Important_Features.png') }}"/></p>
+<p></p><figcaption class="figure-caption">Global Variable Importance Graph</figcaption><p></p>
+</figure>
+</div>
+<p>Partial Dependence Plots for Top-2 variables are shown below: <img alt="Partial Dependence Plot for Top-2 Variables" class="img-fluid" src="{{ url_for('static', path='/doc_images/PDP.png') }}"/></p>
+</section>
+<section class="level3" id="var-headings.h6_3">
+<h3 class="anchored" data-anchor-id="var-headings.h6_3">Model Performance</h3>
+<p>Following are the model performance statistics on validation and OOS test dataset: <strong>Validation dataset</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img class="img-fluid figure-img" src="{{ url_for('static', path='/doc_images/Model_Perf_on_Validation_Dataset.png') }}" width="400"/></p>
+<p></p><figcaption class="figure-caption">Model Performance on Validation dataset</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Test dataset</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img class="img-fluid figure-img" src="{{ url_for('static', path='/doc_images/Model_Perf_on_Test_Dataset.png') }}" width="400"/></p>
+<p></p><figcaption class="figure-caption">Model Performance on Test dataset</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section class="level3" id="var-headings.h6_4">
+<h3 class="anchored" data-anchor-id="var-headings.h6_4">Model Stability</h3>
+<p>Following are model stability statistics: <strong>Train vs. Validation dataset</strong> <img alt="Model Stability (Val vs. Train dataset)" class="img-fluid" src="{{ url_for('static', path='/doc_images/Train%20_vs_%20Validation%20_dataset.png') }}" width="400"/></p>
+<p><strong>Validation vs. Test dataset</strong> <img alt="Model Stability (Val vs. Test dataset)" class="img-fluid" src="{{ url_for('static', path='/doc_images/Validation_vs_Test%20dataset.png') }}" width="400"/></p>
+</section>
+<section class="level3" id="var-headings.h6_5">
+<h3 class="anchored" data-anchor-id="var-headings.h6_5">Model Scoring History</h3>
+<p>Following is a summary of change in model performance statistics with increase in number of trees.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img class="img-fluid figure-img" src="{{ url_for('static', path='/doc_images/Scoring_History.png') }}" width="500"/></p>
+<p></p><figcaption class="figure-caption">Model Scoring History</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+</body></html>
