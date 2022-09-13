@@ -12,7 +12,18 @@ format:
     number-sections: true
     number-depth: 3
     standalone: true
-    toc-title: Contents  
+    toc-title: Contents
+  pdf:
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: true
+    number-depth: 3
+    standalone: true
+    toc-title: Contents
+    fig-align: center
+    fig-pos: "H"
+
 jupyter: python3
 ---
 
@@ -28,12 +39,29 @@ df = pd.read_csv('../input/MODEL_PERFORMANCE_SUMMARY.csv')
 
 from IPython.display import Markdown
 from tabulate import tabulate
+def align_table(tabulated ,align):
+
+    if align == "right":
+        if "-|" in tabulated:
+            new_text = tabulated.replace("-|", ":|")
+    elif align == "left":
+        if "|-" in tabulated:
+            new_text = tabulated.replace("|-", "|:") 
+    else:
+        new_text = tabulated.replace("|-", "|:")
+        new_text = new_text.replace("-|", ":|")
+
+    # print(new_text)
+    return new_text
+headers = df.columns.tolist()
 table = df.values.tolist()
-Markdown(tabulate(
-  table, 
-  headers=df.columns,
-  tablefmt= "grid_table"
-))
+org_table = "\n\n"
+org_table += align_table(tabulate(table, headers = headers, tablefmt="github"), "center")
+org_table += "\n\n"
+org_table += r': {tbl-colwidths="[50,50]"}'
+org_table += "\n\n\n" 
+#print(org_table)
+Markdown(org_table)
 ```
 {{< pagebreak >}}
 
@@ -47,12 +75,29 @@ df = pd.read_csv('../input/DATASET.csv')
 
 from IPython.display import Markdown
 from tabulate import tabulate
+def align_table(tabulated ,align):
+
+    if align == "right":
+        if "-|" in tabulated:
+            new_text = tabulated.replace("-|", ":|")
+    elif align == "left":
+        if "|-" in tabulated:
+            new_text = tabulated.replace("|-", "|:") 
+    else:
+        new_text = tabulated.replace("|-", "|:")
+        new_text = new_text.replace("-|", ":|")
+
+    # print(new_text)
+    return new_text
+headers = df.columns.tolist()
 table = df.values.tolist()
-Markdown(tabulate(
-  table, 
-  headers=df.columns,
-  tablefmt= "grid_table"
-))
+org_table = "\n\n"
+org_table += align_table(tabulate(table, headers = headers, tablefmt="github"), "center")
+org_table += "\n\n"
+org_table += r': {tbl-colwidths="[50,50]"}'
+org_table += "\n\n\n" 
+#print(org_table)
+Markdown(org_table)
 ```
 {{< pagebreak >}}
 
@@ -65,12 +110,29 @@ df = pd.read_csv('../input/EDA.csv')
 
 from IPython.display import Markdown
 from tabulate import tabulate
+def align_table(tabulated ,align):
+
+    if align == "right":
+        if "-|" in tabulated:
+            new_text = tabulated.replace("-|", ":|")
+    elif align == "left":
+        if "|-" in tabulated:
+            new_text = tabulated.replace("|-", "|:") 
+    else:
+        new_text = tabulated.replace("|-", "|:")
+        new_text = new_text.replace("-|", ":|")
+
+    # print(new_text)
+    return new_text
+headers = df.columns.tolist()
 table = df.values.tolist()
-Markdown(tabulate(
-  table, 
-  headers=df.columns,
-  tablefmt= "grid_table"
-))
+org_table = "\n\n"
+org_table += align_table(tabulate(table, headers = headers, tablefmt="github"), "center")
+org_table += "\n\n"
+#org_table += r': {tbl-colwidths="[34,33,33]"}'
+org_table += "\n\n\n" 
+#print(org_table)
+Markdown(org_table)
 ```
 {{< pagebreak >}}
 
@@ -78,6 +140,8 @@ Markdown(tabulate(
   {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
 
 Following is a summary of steps performed to train the model:
+
+
  ![Model Development Pipeline](../input/Model_development_pipeline.png)
 
 ### {{< var Headings.h5_1 >}}
@@ -113,12 +177,29 @@ df = pd.read_csv('../input/Model_Hyperparameters.csv')
 
 from IPython.display import Markdown
 from tabulate import tabulate
+def align_table(tabulated ,align):
+
+    if align == "right":
+        if "-|" in tabulated:
+            new_text = tabulated.replace("-|", ":|")
+    elif align == "left":
+        if "|-" in tabulated:
+            new_text = tabulated.replace("|-", "|:") 
+    else:
+        new_text = tabulated.replace("|-", "|:")
+        new_text = new_text.replace("-|", ":|")
+
+    # print(new_text)
+    return new_text
+headers = df.columns.tolist()
 table = df.values.tolist()
-Markdown(tabulate(
-  table, 
-  headers=df.columns,
-  tablefmt= "grid_table"
-))
+org_table = "\n\n"
+org_table += align_table(tabulate(table, headers = headers, tablefmt="github"), "center")
+org_table += "\n\n"
+org_table += r': {tbl-colwidths="[50,50]"}'
+org_table += "\n\n\n" 
+#print(org_table)
+Markdown(org_table)
 
 # print(tabulate(
 #   table, 
@@ -129,36 +210,43 @@ Markdown(tabulate(
 
 
 ### {{< var Headings.h6_2 >}}
-  Following is a list of important features for the model:
+  
+Following is a list of important features for the model:
 
-  ![Global Variable Importance Graph](../input/Important_Features.png)
+ ![Global Variable Importance Graph](../input/Important_Features.png)
   
 Partial Dependence Plots for Top-2 variables are shown below:
-![Partial Dependence Plot for Top-2 Variables](../input/PDP.png)
+
+ ![Partial Dependence Plot for Top-2 Variables](../input/PDP.png)
 
 
 
 
 ### {{< var Headings.h6_3 >}}
-  Following are the model performance statistics on validation and OOS test dataset:
-  **Validation dataset**
 
-  ![Model Performance on Validation dataset](../input/Model_Perf_on_Validation_Dataset.png){width="400"}
+Following are the model performance statistics on validation and OOS test dataset:
 
-  **Test dataset**
+**Validation dataset**
 
-  ![Model Performance on Test dataset](../input/Model_Perf_on_Test_Dataset.png){width="400"}
+ ![Model Performance on Validation dataset](../input/Model_Perf_on_Validation_Dataset.png){width="400"}
+
+**Test dataset**
+
+ ![Model Performance on Test dataset](../input/Model_Perf_on_Test_Dataset.png){width="400"}
 
 ### {{< var Headings.h6_4 >}}
-  Following are model stability statistics:
+
+ Following are model stability statistics:
+
   **Train vs. Validation dataset**
-  ![Model Stability (Val vs. Train dataset)](../input/Train%20_vs_%20Validation%20_dataset.png){width="400"}
+   ![Model Stability (Val vs. Train dataset)](../input/Train%20_vs_%20Validation%20_dataset.png){width="400"}
 
   **Validation vs. Test dataset**
-  ![Model Stability (Val vs. Test dataset)](../input/Validation_vs_Test%20dataset.png){width="400"}
+   ![Model Stability (Val vs. Test dataset)](../input/Validation_vs_Test%20dataset.png){width="400"}
 
 ### {{< var Headings.h6_5 >}}
-Following is a summary of change in model performance statistics with increase in number of trees.
+
+ Following is a summary of change in model performance statistics with increase in number of trees.
     
-![Model Scoring History](../input/Scoring_History.png){width="500"}
+ ![Model Scoring History](../input/Scoring_History.png){width="500"}
 
