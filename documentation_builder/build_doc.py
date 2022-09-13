@@ -34,6 +34,7 @@ def rename_img_paths():
     # print(text)   
 
     text = text.replace("../input/", "../../input/") 
+    text = text.replace(" ", " ") 
 
     with open("../output/html/Base_Template.html","w") as f:
         f.write(text)

@@ -27,10 +27,10 @@ format:
 jupyter: python3
 ---
 
-## {{< var Headings.h1 >}}
-  This document covers the model development process for **{{< var Algorithm.Model >}}** model. The model is a classification model that uses **{{< var Algorithm.Name >}}** with input data consisting of **{{< var Algorithm.No_of_Observation >}}** observations and **{{< var Algorithm.Features >}}** features. The model achieves Auto of **{{< var Validation.Auto >}}** on validation dataset and **{{< var OOS_test.Auto >}}** on Out-of-Sample (OOS) test dataset.
+## {{< var Headings_h1 >}}
+  This document covers the model development process for **{{< var Algorithm_Model >}}** model. The model is a classification model that uses **{{< var Algorithm_Name >}}** with input data consisting of **{{< var Algorithm_No_of_Observation >}}** observations and **{{< var Algorithm_Features >}}** features. The model achieves Auto of **{{< var Validation_Auto >}}** on validation dataset and **{{< var OOS_test.Auto >}}** on Out-of-Sample (OOS) test dataset.
 {{< pagebreak >}}
-## {{< var Headings.h2 >}}
+## {{< var Headings_h2 >}}
 
 ```{python}
 import pandas as pd
@@ -65,7 +65,7 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings.h3 >}}
+## {{< var Headings_h3 >}}
   Following dataset were used for model training, tuning and OOS performance estimation:
 
 ```{python}
@@ -101,7 +101,7 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings.h4 >}}
+## {{< var Headings_h4 >}}
   Following is a summary of input data. Refer Annexure-1 for detailed EDA.
 ```{python}
 import pandas as pd
@@ -136,34 +136,34 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings.h5 >}}
-  {{< var Algorithm.Name >}} {{< var Algorithm.Overview >}}
+## {{< var Headings_h5 >}}
+  {{< var Algorithm_Name >}} {{< var Algorithm_Overview >}}
 
 Following is a summary of steps performed to train the model:
 
 
  ![Model Development Pipeline](../input/Model_development_pipeline.png)
 
-### {{< var Headings.h5_1 >}}
+### {{< var Headings_h5_1 >}}
   {{< var Data_Preparation >}}
 
-### {{< var Headings.h5_2 >}}
+### {{< var Headings_h5_2 >}}
   {{< var Feature_Transformation >}}
 
-### {{< var Headings.h5_3 >}}
+### {{< var Headings_h5_3 >}}
   {{< var Model_Tunning >}}
 
-### {{< var Headings.h5_4 >}}
+### {{< var Headings_h5_4 >}}
   {{< var Model_Perfor_Eval >}}
 
-### {{< var Headings.h5_5 >}}
+### {{< var Headings_h5_5 >}}
   {{< var Model_Stability >}}
 {{< pagebreak >}}
 
-## {{< var Headings.h6 >}}
-  {{< var Model_Details.details >}}
+## {{< var Headings_h6 >}}
+  {{< var Model_Details_details >}}
 
-### {{< var Headings.h6_1 >}}
+### {{< var Headings_h6_1 >}}
   Following is a summary of key model hyperparameters:
 ```{python}
 #| tags: [parameters]
@@ -209,7 +209,7 @@ Markdown(org_table)
 ```
 
 
-### {{< var Headings.h6_2 >}}
+### {{< var Headings_h6_2 >}}
   
 Following is a list of important features for the model:
 
@@ -222,7 +222,7 @@ Partial Dependence Plots for Top-2 variables are shown below:
 
 
 
-### {{< var Headings.h6_3 >}}
+### {{< var Headings_h6_3 >}}
 
 Following are the model performance statistics on validation and OOS test dataset:
 
@@ -234,7 +234,7 @@ Following are the model performance statistics on validation and OOS test datase
 
  ![Model Performance on Test dataset](../input/Model_Perf_on_Test_Dataset.png){width="400"}
 
-### {{< var Headings.h6_4 >}}
+### {{< var Headings_h6_4 >}}
 
  Following are model stability statistics:
 
@@ -244,7 +244,7 @@ Following are the model performance statistics on validation and OOS test datase
   **Validation vs. Test dataset**
    ![Model Stability (Val vs. Test dataset)](../input/Validation_vs_Test%20dataset.png){width="400"}
 
-### {{< var Headings.h6_5 >}}
+### {{< var Headings_h6_5 >}}
 
  Following is a summary of change in model performance statistics with increase in number of trees.
     

@@ -1,36 +1,31 @@
-Validation:
-  Auto: 75.84%
+Validation_Auto: 75.84%
 
-OOS_test:
-  Auto: 74.98%
+OOS_test_Auto: 74.98%
 
-Algorithm:
-  Name: XGBoost
-  Model: XGBoost_2_AutoML_20210218_195405
-  No_of_Observation: 20000
-  Features: 70
-  Overview: "is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function."
+Algorithm_Name: XGBoost
+Algorithm_Model: XGBoost_2_AutoML_20210218_195405
+Algorithm_No_of_Observation: 20000
+Algorithm_Features: 70
+Algorithm_Overview: "is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function."
 
-Headings:
-  h1: EXECUTIVE SUMMARY
-  h2: MODEL PERFORMANCE SUMMARY
-  h3: DATASET
-  h4: EDA
-  h5: Methodology Overview
-  h5_1: Data Preparation
-  h5_2: Feature Transformation
-  h5_3: Model Tuning
-  h5_4: Model Performance Evaluation
-  h5_5: Model Stability
-  h6: Model Details
-  h6_1: Model Hyperparameters
-  h6_2: Important Features
-  h6_3: Model Performance
-  h6_4: Model Stability
-  h6_5: Model Scoring History
+Headings_h1: EXECUTIVE SUMMARY
+Headings_h2: MODEL PERFORMANCE SUMMARY
+Headings_h3: DATASET
+Headings_h4: EDA
+Headings_h5: Methodology Overview
+Headings_h5_1: Data Preparation
+Headings_h5_2: Feature Transformation
+Headings_h5_3: Model Tuning
+Headings_h5_4: Model Performance Evaluation
+Headings_h5_5: Model Stability
+Headings_h6: Model Details
+Headings_h6_1: Model Hyperparameters
+Headings_h6_2: Important Features
+Headings_h6_3: Model Performance
+Headings_h6_4: Model Stability
+Headings_h6_5: Model Scoring History
 
-Model_Details:
-  details: "Detailed Information regarding model."
+Model_Details_details: "Detailed Information regarding model."
 
 Data_Preparation: "The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e. finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model."
 
