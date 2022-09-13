@@ -36,7 +36,19 @@ def rename_img_paths():
     with open("../output/html/Base_Template.html","w") as f:
         f.write(text)
 
-     
+def copy_files():
+    img_source =  "../input/"
+    img_dest = "../app/static/assets/images"
+
+    files_source = "../output/html/"
+    files_dest = "../app/static/"
+
+    img_res = shutil.copyfile(img_source, img_dest)
+    file_res = shutil.copyfile(files_source, files_dest)
+
+    
+
+
 
 if __name__ == "__main__":
     build_doc()
