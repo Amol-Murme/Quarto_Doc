@@ -65,7 +65,7 @@ def copy_files():
         os.remove(html_dest_file)
     html_res = shutil.move(html_file, html_dest)    
     
-def rename_paths():
+def rename_app_paths():
     base = os.path.dirname(os.path.abspath(__file__))
     html = open(os.path.join(base, '../app/templates/Base_Template.html'))
     bs = BeautifulSoup(html, 'html.parser')
@@ -128,8 +128,23 @@ def make_content_editable():
                 for tag in matched_tags:
                     tag["contenteditable"] = "true"
                     tag["style"] = "background-color:powderblue;"
-                    tag["id"] = str(k)
+                    tag["id"] = "editable_" + str(k)
 
+    script = soup.new_tag('script')
+    # script['selected'] = r"{{ url_for('static', path='/js/index.js') }}"
+    script['src'] = r"{{ url_for('static', path='/js/index.js') }}"
+
+    body = soup.find('body')
+    body.append(script)
+
+    button = soup.new_tag('button')
+    button['type'] = "button"
+    button['class'] = "btn btn-primary btn-lg btn-block"
+    button['onclick'] = "save_edited()"
+    button.append("Save Edited Document")
+
+    main = soup.find('main')
+    main.insert_after(button)
 
     with open('../app/templates/new_Base_Template.html', 'wb') as f:
             f.write(soup.prettify("utf-8"))
@@ -138,5 +153,5 @@ if __name__ == "__main__":
     build_doc()
     rename_img_paths()
     copy_files()
-    rename_paths()
+    rename_app_paths()
     make_content_editable()

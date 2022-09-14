@@ -32,7 +32,24 @@ for k,v in var_list.items():
             for tag in matched_tags:
                 tag["contenteditable"] = "true"
                 tag["style"] = "background-color:powderblue;"
-                tag["id"] = str(k)
+                tag["id"] = "editable_" + str(k)
+
+
+script = soup.new_tag('script')
+# script['selected'] = r"{{ url_for('static', path='/js/index.js') }}"
+script['src'] = r"{{ url_for('static', path='/js/index.js') }}"
+
+body = soup.find('body')
+body.append(script)
+
+button = soup.new_tag('button')
+button['type'] = "button"
+button['class'] = "btn btn-primary btn-lg btn-block"
+button['onclick'] = "save_edited()"
+button.append("Save Edited Document")
+
+main = soup.find('main')
+main.insert_after(button)
 
 
 with open('../app/templates/new_Base_Template.html', 'wb') as f:

@@ -12,11 +12,11 @@ api.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-@api.get("/", response_class=HTMLResponse)
-async def read_item(request:Request):
-    return templates.TemplateResponse("index.html",{'request':request})
+# @api.get("/", response_class=HTMLResponse)
+# async def read_item(request:Request):
+#     return templates.TemplateResponse("index.html",{'request':request})
 
-@api.get("/base", response_class=HTMLResponse)
+@api.get("/", response_class=HTMLResponse)
 async def read_item(request:Request):
     return templates.TemplateResponse("new_Base_Template.html",{'request':request})    
 
