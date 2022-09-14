@@ -4,7 +4,19 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 import subprocess
+import yaml
 from qmd_modifiers import *
+from pydantic import BaseModel, Json
+from typing import Dict
+
+# import sys
+# sys.path.append('../documentation_builder/')
+from build_doc import *
+
+class ArbitaryJson(BaseModel):
+    data: Dict
+
+
 
 api = FastAPI()
 
@@ -17,8 +29,23 @@ templates = Jinja2Templates(directory="templates")
 #     return templates.TemplateResponse("index.html",{'request':request})
 
 @api.get("/", response_class=HTMLResponse)
-async def read_item(request:Request):
+async def index(request:Request):
     return templates.TemplateResponse("new_Base_Template.html",{'request':request})    
+
+@api.post("/recompute")
+async def recompute(arbitaryJson : ArbitaryJson):
+    data = arbitaryJson.data
+
+    with open('../documentation_builder/_variables.yml', 'w') as file:
+        documents = yaml.dump(data, file)
+
+    build_doc()
+    rename_img_paths()
+    copy_files()
+    rename_app_paths()
+    make_content_editable()
+
+    return  arbitaryJson     
 
 @api.get("/api/render_html")
 def calculate():

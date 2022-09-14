@@ -35,13 +35,19 @@ for k,v in var_list.items():
                 tag["id"] = "editable_" + str(k)
 
 
+# add jquery script
 script = soup.new_tag('script')
-# script['selected'] = r"{{ url_for('static', path='/js/index.js') }}"
-script['src'] = r"{{ url_for('static', path='/js/index.js') }}"
+script['src'] = r"{{ url_for('static', path='/js/jquery.js') }}"
 
 body = soup.find('body')
 body.append(script)
 
+#add custom script
+script2 = soup.new_tag('script')
+script2['src'] = r"{{ url_for('static', path='/js/index.js') }}"
+body.append(script2)
+
+#add button
 button = soup.new_tag('button')
 button['type'] = "button"
 button['class'] = "btn btn-primary btn-lg btn-block"

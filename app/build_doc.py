@@ -8,7 +8,7 @@ import yaml
 
 def build_doc():
 
-    qmd_template = "Base_Template.qmd"
+    qmd_template = "../documentation_builder/Base_Template.qmd"
     html_output_path = "../output/html/"
     docx_output_path = "../output/docx/"
     pdf_output_path = "../output/pdf/"
@@ -107,7 +107,7 @@ def make_content_editable():
 
 
     #read .yml variables
-    with open('_variables.yml') as file:
+    with open('../documentation_builder/_variables.yml') as file:
         var_list = yaml.load(file, Loader=yaml.FullLoader)
 
     # print(var_list)

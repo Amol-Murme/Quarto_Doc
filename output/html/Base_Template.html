@@ -67,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="var-headings_h2" class="level2">
 <h2 class="anchored" data-anchor-id="var-headings_h2">MODEL PERFORMANCE SUMMARY</h2>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 33%">
@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="var-headings_h3">DATASET</h2>
 <p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 25%">
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="var-headings_h4">EDA</h2>
 <p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 15%">
@@ -205,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="var-headings_h5" class="level2">
 <h2 class="anchored" data-anchor-id="var-headings_h5">Methodology Overview</h2>
-<p>XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</p>
+<p>XGBoost <strong>?var:Algorithm_Overview</strong></p>
 <p>Following is a summary of steps performed to train the model:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="var-headings_h5_1" class="level3">
 <h3 class="anchored" data-anchor-id="var-headings_h5_1">Data Preparation</h3>
-<p>The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</p>
+<p><strong>?var:Data_Preparation</strong></p>
 </section>
 <section id="var-headings_h5_2" class="level3">
 <h3 class="anchored" data-anchor-id="var-headings_h5_2">Feature Transformation</h3>
@@ -242,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="var-headings_h6_1">Model Hyperparameters</h3>
 <p>Following is a summary of key model hyperparameters:</p>
 <div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 50%">
@@ -324,13 +324,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 <section id="var-headings_h6_4" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_4">Model Stability</h3>
+<h3 class="anchored" data-anchor-id="var-headings_h6_4">Model Stability Statistics</h3>
 <p>Following are model stability statistics:</p>
 <p><strong>Train vs.&nbsp;Validation dataset</strong> <img src="../../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
 <p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../../input/Validation_vs_Test%20dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
 </section>
 <section id="var-headings_h6_5" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_5">Model Scoring History</h3>
+<h3 class="anchored" data-anchor-id="var-headings_h6_5">Model Scoring History 213zzzzzzz</h3>
 <p>Following is a summary of change in model performance statistics with increase in number of trees.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
