@@ -6,12 +6,16 @@ from bs4 import BeautifulSoup
 import re
 import yaml
 
+def setting_path(path: str) -> str:
+    new_path = os.path.join(base,path)
+    return new_path
+
 def build_doc():
     base = os.path.dirname(os.path.abspath(__file__))
-    qmd_template = os.path.join(base, "Base_Template.qmd")
-    html_output_path = os.path.join(base, "../output/html/")
-    docx_output_path = os.path.join(base, "../output/docx/")
-    pdf_output_path = os.path.join(base, "../output/pdf/")
+    qmd_template = setting_path(path="Base_Template.qmd")
+    html_output_path = setting_path(path="../output/html/")
+    docx_output_path = setting_path(path="../output/docx/")
+    pdf_output_path = setting_path(path="../output/pdf/")
 
     html_output = subprocess.call(
                                  ["quarto", "render", qmd_template,"--to", "html",
@@ -29,32 +33,30 @@ def build_doc():
                                  universal_newlines=True)
 
 def rename_img_paths():
-    base = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base, "../output/html/Base_Template.html")
+    file_path = setting_path(path="../output/html/Base_Template.html")
     with open(file_path,"r") as f:
         text= f.read()
 
     # print(text)   
 
     text = text.replace("../input/", "../../input/") 
-    #special_char = u"\u00a0"
-    #text = text.replace([\x08-\x14\x20]+ ," ") 
+    #special_char = u"U+000A0"
+    text = text.replace(' ',' ') 
     # text = text.replace(" ", " ") 
 
     with open(file_path,"w") as f:
         f.write(text)
 
 def copy_files():
-    base = os.path.dirname(os.path.abspath(__file__))
-    img_source =  os.path.join(base, "../input/")
-    img_dest = os.path.join(base, "../app/static/doc_images")
+    img_source =  setting_path(path="../input/")
+    img_dest = setting_path(path="../app/static/doc_images")
 
-    files_source = os.path.join(base, "../output/html/")
-    files_dest = os.path.join(base, "../app/static/doc_statics")
+    files_source = setting_path(path="../output/html/")
+    files_dest = setting_path(path="../app/static/doc_statics")
 
-    html_file = os.path.join(base,"../app/static/doc_statics/Base_Template.html")
-    html_dest = os.path.join(base, "../app/templates/")
-    html_dest_file = os.path.join(base, "../app/templates/Base_Template.html")
+    html_file = setting_path(path="../app/static/doc_statics/Base_Template.html")
+    html_dest = setting_path(path="../app/templates/")
+    html_dest_file = setting_path(path="../app/templates/Base_Template.html")
 
     if os.path.exists(img_dest):
         shutil.rmtree(img_dest)
@@ -69,8 +71,7 @@ def copy_files():
     html_res = shutil.move(html_file, html_dest)    
     
 def rename_app_paths():
-    base = os.path.dirname(os.path.abspath(__file__))
-    html = open(os.path.join(base, '../app/templates/Base_Template.html'))
+    html = open(setting_path(path='../app/templates/Base_Template.html'))
     bs = BeautifulSoup(html, 'html.parser')
 
     images = bs.find_all('img')
@@ -99,15 +100,11 @@ def rename_app_paths():
             path = r"{{ url_for('static', path='" + text_out + r"') }}"
             link['href'] = path
 
-    base = os.path.dirname(os.path.abspath(__file__))
-    path_loc = os.path.join(base, '../app/templates/Base_Template.html')
-    with open(path_loc, 'wb') as f:
+    with open(setting_path(path='../app/templates/Base_Template.html'), 'wb') as f:
         f.write(bs.prettify("utf-8"))
 
 def make_content_editable():
-    base = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base, "../app/templates/Base_Template.html")
-    html_contents = open(file_path, "r")
+    html_contents = open(setting_path(path="../app/templates/Base_Template.html"), "r")
 
     soup = BeautifulSoup(html_contents, 'html.parser')
     # print(html_contents)
@@ -154,13 +151,11 @@ def make_content_editable():
     main = soup.find('main')
     main.insert_after(button)
 
-    base = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base, '../app/templates/new_Base_Template.html')
-
-    with open(file_path, 'wb') as f:
+    with open(setting_path(path='../app/templates/new_Base_Template.html'), 'wb') as f:
             f.write(soup.prettify("utf-8"))
 
 if __name__ == "__main__":
+    base = os.path.dirname(os.path.abspath(__file__))
     build_doc()
     rename_img_paths()
     copy_files()
