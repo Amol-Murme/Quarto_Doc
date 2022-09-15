@@ -13,7 +13,7 @@ from typing import Dict
 # sys.path.append('../documentation_builder/')
 from build_doc import *
 
-class ArbitaryJson(BaseModel):
+class VariablesJson(BaseModel):
     data: Dict
 
 
@@ -33,8 +33,8 @@ async def index(request:Request):
     return templates.TemplateResponse("new_Base_Template.html",{'request':request})    
 
 @api.post("/recompute")
-async def recompute(arbitaryJson : ArbitaryJson):
-    data = arbitaryJson.data
+async def recompute(variablesJson : VariablesJson):
+    data = variablesJson.data
 
     with open('../documentation_builder/_variables.yml', 'w') as file:
         documents = yaml.dump(data, file)
@@ -45,7 +45,7 @@ async def recompute(arbitaryJson : ArbitaryJson):
     rename_app_paths()
     make_content_editable()
 
-    return  arbitaryJson     
+    return  variablesJson     
 
 @api.get("/api/render_html")
 def calculate():
