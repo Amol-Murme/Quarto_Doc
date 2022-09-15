@@ -27,10 +27,11 @@ format:
 jupyter: python3
 ---
 
-## {{< var Headings_h1 >}}
-  [This document covers the model development process for **XGBoost_2_AutoML_20210218_195405** model. The model is a classification model that uses **XGBoost** with input data consisting of **20000** observations and **70** features. The model achieves Auto of **75.84%** on validation dataset and **74.98%** on Out-of-Sample (OOS) test dataset.]{id="editable_Headings_h1_p"}
+## [{{< var editable_Headings_h1 >}}]{id="editable_Headings_h1" contenteditable="true"}
+  [{{< var editable_Headings_h1_p >}}]{id="editable_Headings_h1_p" contenteditable="true"}
+
 {{< pagebreak >}}
-## {{< var Headings_h2 >}}
+## [{{< var editable_Headings_h2 >}}]{id="editable_Headings_h2" contenteditable="true"}
 
 ```{python}
 import pandas as pd
@@ -65,8 +66,8 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings_h3 >}}
-  [Following dataset were used for model training, tuning and OOS performance estimation:]{id="editable_Headings_h3_p"}
+## [{{< var editable_Headings_h3 >}}]{id="editable_Headings_h3" contenteditable="true"}
+  [[{{< var editable_Headings_h3_p >}}]{id="editable_Headings_h3_p" contenteditable="true"}
 
 ```{python}
 import pandas as pd
@@ -101,8 +102,8 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings_h4 >}}
-  [Following is a summary of input data. Refer Annexure-1 for detailed EDA.]{id="editable_Headings_h4_p"}
+## [{{< var editable_Headings_h4 >}}]{id="editable_Headings_h4" contenteditable="true"}
+  [{{< var editable_Headings_h4_p >}}]{id="editable_Headings_h4_p" contenteditable="true"}
 ```{python}
 import pandas as pd
 df = pd.read_csv('../input/EDA.csv')
@@ -136,38 +137,39 @@ Markdown(org_table)
 ```
 {{< pagebreak >}}
 
-## {{< var Headings_h5 >}}
-  [XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.]{id="editable_Headings_h5_p"}
+## [{{< var editable_Headings_h5 >}}]{id="editable_Headings_h5" contenteditable="true"}
 
-[Following is a summary of steps performed to train the model:]{id="editable_editable_Headings_h5_p1"}
+  [{{< var editable_Headings_h5_p >}}]{id="editable_Headings_h5_p" contenteditable="true"}
+
+[{{< var editable_Headings_h5_p1 >}}]{id="editable_Headings_h5_p1" contenteditable="true"}
 
 
  ![Model Development Pipeline](../input/Model_development_pipeline.png)
 
-### {{< var Headings_h5_1 >}}
-  [The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e. finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.]{id="editable_Headings_h5_1"}
+### [{{< var editable_Headings_h5_1 >}}]{id="editable_Headings_h5_1" contenteditable="true"}
+  [{{< var editable_Headings_h5_1_p >}}]{id="editable_Headings_h5_1_p" contenteditable="true"}
 
-### {{< var Headings_h5_2 >}}
-  [Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.]{id="editable_Headings_h5_2_p"}
-
-
-### {{< var Headings_h5_3 >}}
-  [Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).]{id="editable_Headings_h5_3_p"}
+### [{{< var editable_Headings_h5_2 >}}]{id="editable_Headings_h5_2" contenteditable="true"}
+  [{{< var editable_Headings_h5_2_p >}}]{id="editable_Headings_h5_2_p" contenteditable="true"}
 
 
-### {{< var Headings_h5_4 >}}
-  [Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.]{id="editable_Headings_h5_4_p"}
+### [{{< var editable_Headings_h5_3 >}}]{id="editable_Headings_h5_3" contenteditable="true"}
+  [{{< var editable_Headings_h5_3_p >}}]{id="editable_Headings_h5_3_p" contenteditable="true"}
 
 
-### {{< var Headings_h5_5 >}}
-  [Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.]{id="editable_Headings_h5_5_p"}
+### [{{< var editable_Headings_h5_4 >}}]{id="editable_Headings_h5_4" contenteditable="true"}
+  [{{< var editable_Headings_h5_4_p >}}]{id="editable_Headings_h5_4_p" contenteditable="true"}
+
+
+### [{{< var editable_Headings_h5_5 >}}]{id="editable_Headings_h5_5" contenteditable="true"}
+  [{{< var editable_Headings_h5_5_p >}}]{id="editable_Headings_h5_5_p" contenteditable="true"}
 {{< pagebreak >}}
 
-## {{< var Headings_h6 >}}
-  [Detailed Information regarding model.]{id="editable_Headings_h6_p"}
+## [{{< var editable_Headings_h6 >}}]{id="editable_Headings_h6" contenteditable="true"}
+  [{{< var editable_Headings_h6_p >}}]{id="editable_Headings_h6_p" contenteditable="true"}
 
-### {{< var Headings_h6_1 >}}
-  [Following is a summary of key model hyperparameters:]{id="editable_Headings_h6_1_p"}
+### [{{< var editable_Headings_h6_1 >}}]{id="editable_Headings_h6_1" contenteditable="true"}
+  [{{< var editable_Headings_h6_1_p >}}]{id="editable_Headings_h6_1_p" contenteditable="true"}
 ```{python}
 import pandas as pd
 
@@ -208,22 +210,22 @@ Markdown(org_table)
 ```
 
 
-### {{< var Headings_h6_2 >}}
+### [{{< var editable_Headings_h6_2 >}}]{id="editable_Headings_h6_2" contenteditable="true"}
   
-[Following is a list of important features for the model:]{id="editable_Headings_h6_2_p"}
+[{{< var editable_Headings_h6_2_p >}}]{id="editable_Headings_h6_2_p" contenteditable="true"}
 
  ![Global Variable Importance Graph](../input/Important_Features.png)
   
-[Partial Dependence Plots for Top-2 variables are shown below:]{id="editable_Headings_h6_2_p1"}
+[{{< var editable_Headings_h6_2_p1 >}}]{id="editable_Headings_h6_2_p1" contenteditable="true"}
 
  ![Partial Dependence Plot for Top-2 Variables](../input/PDP.png)
 
 
 
 
-### {{< var Headings_h6_3 >}}
+### [{{< var editable_Headings_h6_3 >}}]{id="editable_Headings_h6_3" contenteditable="true"}
 
-[Following are the model performance statistics on validation and OOS test dataset:]{id="editable_Headings_h6_3"}
+[{{< var editable_Headings_h6_3_p >}}]{id="editable_Headings_h6_3_p" contenteditable="true"}
 
 **Validation dataset**
 
@@ -233,9 +235,9 @@ Markdown(org_table)
 
  ![Model Performance on Test dataset](../input/Model_Perf_on_Test_Dataset.png){width="400"}
 
-### {{< var Headings_h6_4 >}}
+### [{{< var editable_Headings_h6_4 >}}]{id="editable_Headings_h6_4" contenteditable="true"}
 
- [Following are model stability statistics:]{id="editable_Headings_h6_4"}
+ [{{< var editable_Headings_h6_4_p >}}]{id="editable_Headings_h6_4_p" contenteditable="true"}
 
   **Train vs. Validation dataset**
    ![Model Stability (Val vs. Train dataset)](../input/Train%20_vs_%20Validation%20_dataset.png){width="400"}
@@ -243,9 +245,9 @@ Markdown(org_table)
   **Validation vs. Test dataset**
    ![Model Stability (Val vs. Test dataset)](../input/Validation_vs_Test%20dataset.png){width="400"}
 
-### {{< var Headings_h6_5 >}}
+### [{{< var editable_Headings_h6_5 >}}]{id="editable_Headings_h6_5" contenteditable="true"}
 
- [Following is a summary of change in model performance statistics with increase in number of trees.]{id="editable_Headings_h6_5_p"}
+ [{{< var editable_Headings_h6_5_p >}}]{id="editable_Headings_h6_5_p" contenteditable="true"}
     
  ![Model Scoring History](../input/Scoring_History.png){width="500"}
 

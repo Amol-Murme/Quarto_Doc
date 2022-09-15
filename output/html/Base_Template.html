@@ -59,15 +59,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="var-headings_h1" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h1">EXECUTIVE SUMMARY</h2>
-<p>This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405</strong> model. The model is a classification model that uses <strong>XGBoost</strong> with input data consisting of <strong>20000</strong> observations and <strong>70</strong> features. The model achieves Auto of <strong>75.84%</strong> on validation dataset and <strong>74.98%</strong> on Out-of-Sample (OOS) test dataset.</p>
+<section id="var-editable_headings_h1" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h1"><span id="editable_Headings_h1" contenteditable="true">EXECUTIVE SUMMARY</span></h2>
+<p><span id="editable_Headings_h1_p" contenteditable="true">This document covers the model development process for <strong>XGBoost_2_AutoML_20210218_195405 </strong>model. The model is a classification model that uses <strong>XGBoost </strong>with input data consisting of <strong>20000 </strong>observations and <strong>70 </strong>features. The model achieves Auto of <strong>75.84% </strong>on validation dataset and <strong>74.98% </strong>on Out-of-Sample (OOS) test dataset.</span></p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings_h2" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h2">MODEL PERFORMANCE SUMMARY</h2>
+<section id="var-editable_headings_h2" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h2"><span id="editable_Headings_h2" contenteditable="true">MODEL PERFORMANCE SUMMARY</span></h2>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="97">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 33%">
@@ -98,11 +98,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings_h3" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h3">DATASET</h2>
-<p>Following dataset were used for model training, tuning and OOS performance estimation:</p>
+<section id="var-editable_headings_h3" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h3"><span id="editable_Headings_h3" contenteditable="true">DATASET</span></h2>
+<p>[<span id="editable_Headings_h3_p" contenteditable="true">Following dataset were used for model training, tuning and OOS performance estimation</span></p>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="98">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 25%">
@@ -143,11 +143,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings_h4" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h4">EDA</h2>
-<p>Following is a summary of input data. Refer Annexure-1 for detailed EDA.</p>
+<section id="var-editable_headings_h4" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h4"><span id="editable_Headings_h4" contenteditable="true">EDA</span></h2>
+<p><span id="editable_Headings_h4_p" contenteditable="true">Following is a summary of input data. Refer Annexure-1 for detailed EDA.</span></p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="99">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 15%">
@@ -203,46 +203,46 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="var-headings_h5" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h5">Methodology Overview</h2>
-<p>XGBoost <strong>?var:Algorithm_Overview</strong></p>
-<p>Following is a summary of steps performed to train the model:</p>
+<section id="var-editable_headings_h5" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h5"><span id="editable_Headings_h5" contenteditable="true">Methodology Overview</span></h2>
+<p><span id="editable_Headings_h5_p" contenteditable="true">XGBoost is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion by optimization of a loss function.</span></p>
+<p><span id="editable_Headings_h5_p1" contenteditable="true">Following is a summary of steps performed to train the model:</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../input/Model_development_pipeline.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Model Development Pipeline</figcaption><p></p>
 </figure>
 </div>
-<section id="var-headings_h5_1" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h5_1">Data Preparation</h3>
-<p><strong>?var:Data_Preparation</strong></p>
+<section id="var-editable_headings_h5_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h5_1"><span id="editable_Headings_h5_1" contenteditable="true">Data Preparation</span></h3>
+<p><span id="editable_Headings_h5_1_p" contenteditable="true">The dataset is randomly split into train, validation and holdout test datasets. Train data is used for model fitting. Validation dataset is used for model tuning i.e.&nbsp;finding the optimal combination of hyperparameters that provide the best fit on a given dataset. Holdout test dataset is used to arrive at an unbiased estimate of OOS performance of the model.</span></p>
 </section>
-<section id="var-headings_h5_2" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h5_2">Feature Transformation</h3>
-<p>Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</p>
+<section id="var-editable_headings_h5_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h5_2"><span id="editable_Headings_h5_2" contenteditable="true">Feature Transformation</span></h3>
+<p><span id="editable_Headings_h5_2_p" contenteditable="true">Typically all features are converted into numeric features. This is a mandatory transformation for many algorithms such as XGBoost.</span></p>
 </section>
-<section id="var-headings_h5_3" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h5_3">Model Tuning</h3>
-<p>Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</p>
+<section id="var-editable_headings_h5_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h5_3"><span id="editable_Headings_h5_3" contenteditable="true">Model Tuning</span></h3>
+<p><span id="editable_Headings_h5_3_p" contenteditable="true">Various models are fitted to the train dataset with multiple combination of hyperparameters (HP). These HP typically control model capacity (large capacity models will provide better fit on train data but may fail to generalize to OOS dataset), model complexity (typically models with larger capacity are also more complex) and model generalization (to prevent overfitting to train data).</span></p>
 </section>
-<section id="var-headings_h5_4" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h5_4">Model Performance Evaluation</h3>
-<p>Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</p>
+<section id="var-editable_headings_h5_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h5_4"><span id="editable_Headings_h5_4" contenteditable="true">Model Performance Evaluation</span></h3>
+<p><span id="editable_Headings_h5_4_p" contenteditable="true">Performance of trained models is compared on validation dataset using different statistics. Final HP combination and the resultant final model is selected on basis of performance on the validation dataset.</span></p>
 </section>
-<section id="var-headings_h5_5" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h5_5">Model Stability</h3>
-<p>Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</p>
+<section id="var-editable_headings_h5_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h5_5"><span id="editable_Headings_h5_5" contenteditable="true">Model Stability</span></h3>
+<p><span id="editable_Headings_h5_5_p" contenteditable="true">Model stability is checked by detecting drift/shift in features between train, validation and test dataset. This is done by computing Stability Index at model and individual feature level to identify if model is stable or not.</span></p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
-<section id="var-headings_h6" class="level2">
-<h2 class="anchored" data-anchor-id="var-headings_h6">Model Details</h2>
-<p>Detailed Information regarding model.</p>
-<section id="var-headings_h6_1" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_1">Model Hyperparameters</h3>
-<p>Following is a summary of key model hyperparameters:</p>
-<div class="cell" data-tags="[&quot;parameters&quot;]" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<section id="var-editable_headings_h6" class="level2">
+<h2 class="anchored" data-anchor-id="var-editable_headings_h6"><span id="editable_Headings_h6" contenteditable="true">Model Details</span></h2>
+<p><span id="editable_Headings_h6_p" contenteditable="true">Detailed Information regarding model.</span></p>
+<section id="var-editable_headings_h6_1" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h6_1"><span id="editable_Headings_h6_1" contenteditable="true">Model Hyperparameters</span></h3>
+<p><span id="editable_Headings_h6_1_p" contenteditable="true">Following is a summary of key model hyperparameters:</span></p>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="100">
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 50%">
@@ -288,16 +288,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="var-headings_h6_2" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_2">Important Features</h3>
-<p>Following is a list of important features for the model:</p>
+<section id="var-editable_headings_h6_2" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h6_2"><span id="editable_Headings_h6_2" contenteditable="true">Important Features</span></h3>
+<p><span id="editable_Headings_h6_2_p" contenteditable="true">Following is a list of important features for the model:</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../input/Important_Features.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Global Variable Importance Graph</figcaption><p></p>
 </figure>
 </div>
-<p>Partial Dependence Plots for Top-2 variables are shown below:</p>
+<p><span id="editable_Headings_h6_2_p1" contenteditable="true">Partial Dependence Plots for Top-2 variables are shown below:</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../input/PDP.png" class="img-fluid figure-img"></p>
@@ -305,9 +305,9 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="var-headings_h6_3" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_3">Model Performance</h3>
-<p>Following are the model performance statistics on validation and OOS test dataset:</p>
+<section id="var-editable_headings_h6_3" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h6_3"><span id="editable_Headings_h6_3" contenteditable="true">Model Performance</span></h3>
+<p><span id="editable_Headings_h6_3_p" contenteditable="true">Following are the model performance statistics on validation and OOS test dataset:</span></p>
 <p><strong>Validation dataset</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -323,15 +323,15 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="var-headings_h6_4" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_4">Model Stability Statistics</h3>
-<p>Following are model stability statistics:</p>
+<section id="var-editable_headings_h6_4" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h6_4"><span id="editable_Headings_h6_4" contenteditable="true">Model Stability Statistics</span></h3>
+<p><span id="editable_Headings_h6_4_p" contenteditable="true">Following are model stability statistics:</span></p>
 <p><strong>Train vs.&nbsp;Validation dataset</strong> <img src="../../input/Train%20_vs_%20Validation%20_dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Train dataset)"></p>
 <p><strong>Validation vs.&nbsp;Test dataset</strong> <img src="../../input/Validation_vs_Test%20dataset.png" class="img-fluid" width="400" alt="Model Stability (Val vs.&nbsp;Test dataset)"></p>
 </section>
-<section id="var-headings_h6_5" class="level3">
-<h3 class="anchored" data-anchor-id="var-headings_h6_5">Model Scoring History qqqqqqq</h3>
-<p>Following is a summary of change in model performance statistics with increase in number of trees.</p>
+<section id="var-editable_headings_h6_5" class="level3">
+<h3 class="anchored" data-anchor-id="var-editable_headings_h6_5"><span id="editable_Headings_h6_5" contenteditable="true">Model Scoring History Reloaded..</span></h3>
+<p><span id="editable_Headings_h6_5_p" contenteditable="true">Following is a summary of change in model performance statistics with increase in number of trees.</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../input/Scoring_History.png" class="img-fluid figure-img" width="500"></p>

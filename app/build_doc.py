@@ -33,11 +33,8 @@ def rename_img_paths():
         text= f.read()
 
     # print(text)   
-
-    text = text.replace("../input/", "../../input/") 
-    special_char = u"\u00a0"
-    text = text.replace(special_char, " ") 
-    # text = text.replace(" ", " ") 
+    if "../../input/" not in text:
+        text = text.replace("../input/", "../../input/") 
 
     with open("../output/html/Base_Template.html","w") as f:
         f.write(text)
@@ -99,36 +96,11 @@ def rename_app_paths():
     with open('../app/templates/Base_Template.html', 'wb') as f:
         f.write(bs.prettify("utf-8"))
 
-def make_content_editable():
+def add_button():
     html_contents = open("../app/templates/Base_Template.html", "r")
 
     soup = BeautifulSoup(html_contents, 'html.parser')
     # print(html_contents)
-
-
-    #read .yml variables
-    with open('../documentation_builder/_variables.yml') as file:
-        var_list = yaml.load(file, Loader=yaml.FullLoader)
-
-    # print(var_list)
-
-    #list of probable elements to search
-    elements = ['p', 'h2', 'h3', 'strong']
-
-    for k,v in var_list.items():
-        # print(k)
-        for ele in elements:
-            matched_tags = soup.find_all(lambda tag: (len(tag.find_all()) == 0 )
-                                                    and(str(tag.text).strip() == str(v).strip())
-                                                    and (ele in tag.name)
-                                                    and ( "figcaption" not in tag.name )
-                                        )
-
-            if matched_tags != []:
-                for tag in matched_tags:
-                    tag["contenteditable"] = "true"
-                    tag["style"] = "background-color:powderblue;"
-                    tag["id"] = "editable_" + str(k)
 
     # add jquery script
     script = soup.new_tag('script')
@@ -152,6 +124,54 @@ def make_content_editable():
     main = soup.find('main')
     main.insert_after(button)
 
+    #add modal
+    '''
+    <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body">
+            <p>Modal body text goes here.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+    '''
+
+    modal = soup.new_tag('div')
+    modal['class'] = "modal"
+    modal['id'] = "loader"
+    modal['tabindex'] = "-1"
+    modal['role'] = "dialog"
+    modal['data-backdrop'] = "static"
+    modal['data-keyboard'] = "false"
+    modal['aria-hidden'] = "true"
+
+    modal_dialog = soup.new_tag('div')
+    modal_dialog['class'] = "modal-dialog"
+    modal_dialog['role'] = "document"
+
+    modal_content = soup.new_tag('div')
+    modal_content['class'] = "modal-content"
+
+    modal_body = soup.new_tag('div')
+    modal_body['class'] = "modal-body"
+
+    #  <center><img src="https://miro.medium.com/max/500/1*em5HcTFZIQw90qIgdbYjVg.gif"></center>
+
+    center = soup.new_tag('center')
+    img = soup.new_tag('img')
+    img['src'] = "https://miro.medium.com/max/500/1*em5HcTFZIQw90qIgdbYjVg.gif"
+    center.append(img)
+
+    modal_body.append(center)
+    modal_content.append(modal_body)
+    modal_dialog.append(modal_content)
+    modal.append(modal_dialog)
+
+    main = soup.find('main')
+    main.insert_after(modal)
+    main.insert_after(button)
+
 
     with open('../app/templates/new_Base_Template.html', 'wb') as f:
             f.write(soup.prettify("utf-8"))
@@ -161,4 +181,4 @@ if __name__ == "__main__":
     rename_img_paths()
     copy_files()
     rename_app_paths()
-    make_content_editable()
+    add_button()

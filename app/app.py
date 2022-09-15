@@ -43,7 +43,7 @@ async def recompute(variablesJson : VariablesJson):
     rename_img_paths()
     copy_files()
     rename_app_paths()
-    make_content_editable()
+    add_button()
 
     return  variablesJson     
 
